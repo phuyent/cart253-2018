@@ -28,6 +28,12 @@ var dabImageY;
 //The image of a rainbow emoji under the mouse (second image)
 var rainbowImage;
 
+//The image of a peach emoji following the mouse faster (last image)
+var rainbowImage;
+//The current position of the peach emoji
+var peachImageX;
+var peachImageY;
+
 
 
 // preload()
@@ -39,6 +45,7 @@ function preload() {
   feltTextureImage = loadImage("assets/images/black-felt-texture.png");
   dabImage = loadImage("assets/images/dabemo.jpeg");
   rainbowImage = loadImage("assets/images/rainbow.png");
+  peachImage = loadImage("assets/images/peach.jpeg");
 }
 
 
@@ -61,6 +68,11 @@ function setup() {
   //Start the dab emoji at the left of the canvas
  dabImageX = 0;
  dabImageY = height/2;
+
+ //Start the peach emoji at the same place as the clown face :)
+ peachImageX = width/2;
+ peachImageY = height/2;
+
 
 
 
@@ -99,6 +111,19 @@ function draw() {
    //Display the dab emoji
    image(dabImage,dabImageX, dabImageY);
 
-   //Display the rainbow emoji
-   image(rainbowImage,mouseX,mouseY);
+   //Display and adjust the size of the rainbow emoji
+   image(rainbowImage,mouseX,mouseY, 200,200);
+
+   //Move the peach emoji by moving it 1/5th of its current distance from the mouse
+
+   //Calculate the distance between the peach and the mouse
+   var distanceX = mouseX - peachImageX;
+   var distanceY = mouseY - peachImageY;
+   //Add 1/5th of the x and y distance to the peach's current position
+   peachImageX = peachImageX + distanceX/5;
+   peachImageY = peachImageY + distanceY/5;
+
+   //Display and adjust the size of the peach
+   image(peachImage,peachImageX,peachImageY,200,100);
+
 }
