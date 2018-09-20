@@ -19,6 +19,16 @@ var feltTextureImage;
 var feltTextureImageX;
 var feltTextureImageY;
 
+//The image of the dab emoji moving left to right
+var dabImage;
+//The current position of the dab emoji (first image)
+var dabImageX;
+var dabImageY;
+
+//The image of a rainbow emoji under the mouse (second image)
+var rainbowImage;
+
+
 
 // preload()
 //
@@ -27,6 +37,8 @@ var feltTextureImageY;
 function preload() {
   clownImage = loadImage("assets/images/clown.png");
   feltTextureImage = loadImage("assets/images/black-felt-texture.png");
+  dabImage = loadImage("assets/images/dabemo.jpeg");
+  rainbowImage = loadImage("assets/images/rainbow.png");
 }
 
 
@@ -45,6 +57,12 @@ function setup() {
   // Start the felt image perfectly off screen above the canvas
   feltTextureImageX = width/2;
   feltTextureImageY = 0 - feltTextureImage.height/2;
+
+  //Start the dab emoji at the left of the canvas
+ dabImageX = 0;
+ dabImageY = height/2;
+
+
 
   // We'll use imageMode CENTER for this script
   imageMode(CENTER);
@@ -75,4 +93,12 @@ function draw() {
 
   // Display the clown image
   image(clownImage,clownImageX,clownImageY);
+
+  //Move the dab emoji across the canvas by increasing its x position
+   dabImageX += 1;
+   //Display the dab emoji
+   image(dabImage,dabImageX, dabImageY);
+
+   //Display the rainbow emoji
+   image(rainbowImage,mouseX,mouseY);
 }
