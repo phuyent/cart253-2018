@@ -7,17 +7,18 @@ Starter code for exercise 2.
 
 *********************************************************/
 
-// The position and size of our avatar circle
+// The position and size of our avatar RECTANGLE
 var avatarX;
 var avatarY;
 var avatarSize = 50;
 
-// The speed and velocity of our avatar circle
+// The speed and velocity of our avatar RECTANGLE
 var avatarSpeed = 10;
 var avatarVX = 0;
 var avatarVY = 0;
 
-// The position and size of the enemy circle
+// The position and size of the enemy AKA THE BOMB
+var enemy
 var enemyX;
 var enemyY;
 var enemySize = 50;
@@ -36,7 +37,12 @@ var dodges = 0;
 //The text counting the dodges the player has made
 var string = "Successful Dodges:";
 
-
+//preload()
+//
+//Preload the bomb image before the program starts
+function preload() {
+  enemy = loadImage('assets/images/bomb.png');
+}
 // setup()
 //
 // Make the canvas, position the avatar and anemy
@@ -67,8 +73,8 @@ function setup() {
 // Handle moving the avatar and enemy and checking for dodges and
 // game over situations.
 function draw() {
-  // A pink background
-  background(255,220,220);
+  //Change background to blue
+  background(0,220,255);
 
   //The official text
   text(string,500,500);
@@ -160,15 +166,13 @@ function draw() {
   // Display the current number of successful in the console
   console.log(dodges);
 
-  // The player is black
-  fill(0);
-  // Draw the player as a circle
-  ellipse(avatarX,avatarY,avatarSize,avatarSize);
+  // The player is white
+  fill(255);
+  // Draw the player as a RECTANGLE
+  rect(avatarX,avatarY,40,40);
 
-  // The enemy is red
-  fill(255,0,0);
-  // Draw the enemy as a circle
-  ellipse(enemyX,enemyY,enemySize,enemySize);
+  // Display the enemy image
+  image(enemy,enemyX,enemyY,60,60);
 
 
 }
