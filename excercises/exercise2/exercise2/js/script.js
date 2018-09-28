@@ -163,6 +163,20 @@ function draw() {
     enemySize = enemySize + enemySizeIncrease;
   }
 
+  //Plus 2 more points if the player successfully dodged the enemy 2 times
+  if ((enemyX > width)*2) {
+    dodges = dodges + 2;
+    // Tell them how many dodges they have made ON SCREEN
+    string = (string + dodges) + 2;
+    // Reset the enemy's position to the left at a random height
+    enemyX = 0;
+    enemyY = random(0,height);
+    // Increase the enemy's speed and size to make the game harder
+    enemySpeed = enemySpeed + enemySpeedIncrease;
+    enemySize = enemySize + enemySizeIncrease;
+  }
+
+
   // Display the current number of successful in the console
   console.log(dodges);
 
