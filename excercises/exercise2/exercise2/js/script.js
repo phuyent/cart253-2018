@@ -22,7 +22,7 @@ var enemyX;
 var enemyY;
 var enemySize = 50;
 // How much bigger the enemy circle gets with each successful dodge
-var enemySizeIncrease = 5;s
+var enemySizeIncrease = 5;
 
 // The speed and velocity of our enemy circle
 var enemySpeed = 5;
@@ -33,12 +33,22 @@ var enemySpeedIncrease = 0.5;
 // How many dodges the player has made
 var dodges = 0;
 
+//The text counting the dodges the player has made
+var string = "Successful Dodges:";
+
+
 // setup()
 //
 // Make the canvas, position the avatar and anemy
 function setup() {
   // Create our playing area
   createCanvas(500,500);
+
+  //The appearance of the text
+  fill(255);
+  textSize(24);
+  textAlign(RIGHT,BOTTOM);
+  textFont(string);
 
   // Put the avatar in the centre
   avatarX = width/2;
@@ -59,6 +69,9 @@ function setup() {
 function draw() {
   // A pink background
   background(255,220,220);
+
+  //The official text
+  text(string,500,500);
 
   // Default the avatar's velocity to 0 in case no key is pressed this frame
   avatarVX = 0;
@@ -99,6 +112,8 @@ function draw() {
   if (dist(enemyX,enemyY,avatarX,avatarY) < enemySize/2 + avatarSize/2) {
     // Tell the player they lost
     console.log("YOU LOSE!");
+    // Reset the player's successful dodges
+    string = string + "0" ;
     // Reset the enemy's position
     enemyX = 0;
     enemyY = random(0,height);
@@ -116,6 +131,7 @@ function draw() {
   if (avatarX < 0 || avatarX > width || avatarY < 0 || avatarY > height) {
     // If they went off the screen they lose in the same way as above.
     console.log("YOU LOSE!");
+    string = string + "0";
     enemyX = 0;
     enemyY = random(0,height);
     enemySize = 50;
@@ -131,6 +147,8 @@ function draw() {
     dodges = dodges + 1;
     // Tell them how many dodges they have made
     console.log(dodges + " DODGES!");
+    // Tell them how many dodges they have made ON SCREEN
+    string = string + dodges;
     // Reset the enemy's position to the left at a random height
     enemyX = 0;
     enemyY = random(0,height);
@@ -151,5 +169,6 @@ function draw() {
   fill(255,0,0);
   // Draw the enemy as a circle
   ellipse(enemyX,enemyY,enemySize,enemySize);
+
 
 }
