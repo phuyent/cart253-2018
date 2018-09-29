@@ -17,18 +17,22 @@ var avatarSpeed = 10;
 var avatarVX = 0;
 var avatarVY = 0;
 
+//How much bigger and faster the avatar gets with each successful dodges
+var avatarSizeIncrease ;
+var avatarSpeedIncrease ;
+
 // The position and size of the enemy AKA THE BOMB
 var enemy
 var enemyX;
 var enemyY;
 var enemySize = 50;
-// How much bigger the enemy circle gets with each successful dodge
+// How much bigger the enemy  gets with each successful dodge
 var enemySizeIncrease = 5;
 
 // The speed and velocity of our enemy circle
 var enemySpeed = 5;
 var enemyVX = 5;
-// How much bigger the enemy circle gets with each successful dodge
+// How much bigger the enemy gets with each successful dodge
 var enemySpeedIncrease = 0.5;
 
 // How many dodges the player has made
@@ -45,7 +49,7 @@ function preload() {
 }
 // setup()
 //
-// Make the canvas, position the avatar and anemy
+// Make the canvas, position the avatar and enemy
 function setup() {
   // Create our playing area
   createCanvas(500,500);
@@ -63,6 +67,10 @@ function setup() {
   // Put the enemy to the left at a random y coordinate within the canvas
   enemyX = 0;
   enemyY = random(0,height);
+
+  //The amount the size and the speed of the player
+  avatarSizeIncrease = random(1,100);
+  avatarSpeedIncrease = random(1,5);
 
   // No stroke so it looks cleaner
   noStroke();
@@ -148,33 +156,25 @@ function draw() {
   }
 
   // Check if the enemy has moved all the way across the screen
-  if (enemyX > width) {
-    // This means the player dodged so update its dodge statistic
-    dodges = dodges + 1;
-    // Tell them how many dodges they have made
-    console.log(dodges + " DODGES!");
-    // Tell them how many dodges they have made ON SCREEN
-    string = string + dodges;
-    // Reset the enemy's position to the left at a random height
-    enemyX = 0;
-    enemyY = random(0,height);
-    // Increase the enemy's speed and size to make the game harder
-    enemySpeed = enemySpeed + enemySpeedIncrease;
-    enemySize = enemySize + enemySizeIncrease;
-  }
+    if (enemyX > width) {
+      // This means the player dodged so update its dodge statistic
+      dodges = dodges + 1;
+      // Tell them how many dodges they have made
+      console.log(dodges + " DODGES!");
+      // Tell them how many dodges they have made ON SCREEN
+      string = string + dodges;
+      //Change the size and speed of the player after each successful dodge
+      avatarSize = avatarSize + avatarSizeIncrease;
+      avatarSpeed = avatarSpeed + avatarSpeedIncrease;
+      // Reset the enemy's position to the left at a random height
+      enemyX = 0;
+      enemyY = random(0,height);
+      // Increase the enemy's speed and size to make the game harder
+      enemySpeed = enemySpeed + enemySpeedIncrease;
+      enemySize = enemySize + enemySizeIncrease;
+    }
 
-  //Plus 2 more points if the player successfully dodged the enemy 2 times
-  if ((enemyX > width)*2) {
-    dodges = dodges + 2;
-    // Tell them how many dodges they have made ON SCREEN
-    string = (string + dodges) + 2;
-    // Reset the enemy's position to the left at a random height
-    enemyX = 0;
-    enemyY = random(0,height);
-    // Increase the enemy's speed and size to make the game harder
-    enemySpeed = enemySpeed + enemySpeedIncrease;
-    enemySize = enemySize + enemySizeIncrease;
-  }
+
 
 
   // Display the current number of successful in the console
