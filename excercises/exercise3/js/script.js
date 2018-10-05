@@ -118,6 +118,7 @@ function setup() {
     }
   }
 
+
   //Draw a rectangle at the top right of the canvas
   rectX = windowWidth - 200;
   rectY = windowHeight - (windowHeight-1);
@@ -142,8 +143,6 @@ function setup() {
   displayImageY = windowHeight- (windowHeight-200);
 //Draw the image
   image(displayImage,displayImageX,displayImageY,150,200);
-
-
 
 }
 
@@ -176,7 +175,11 @@ function mousePressed() {
     // Check if the mouse is also in the y range of the target
     if (mouseY > targetY - targetImage.height/2 && mouseY < targetY + targetImage.height/2) {
       gameOver = true;
-    }
-  }
 
+      //Use while to reload randomly again when the target gets inside the rectangle
+        while ( targetX > (rectX - 100) && targetX < (rectX + 100) &&
+                targetY > (rectY - 150) && targetY < (rectY + 150) ) {
+                  targetX = random(0,width);
+  }}
+  }
 }
