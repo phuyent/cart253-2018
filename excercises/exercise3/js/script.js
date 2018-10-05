@@ -180,6 +180,7 @@ function mousePressed() {
         while ( targetX > (rectX - 100) && targetX < (rectX + 100) &&
                 targetY > (rectY - 150) && targetY < (rectY + 150) ) {
                   targetX = random(0,width);
+                  targetY = random(0,height);
   }}
   }
 }
