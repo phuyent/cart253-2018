@@ -34,11 +34,23 @@ var numDecoys = 100;
 // Keep track of whether they've won
 var gameOver = false;
 
+//Position and the image display on the top right of the canvas
+var displayImage;
+var displayImageX;
+var displayImageY;
+
+//The position of the rectangle
+var rectX;
+var rectY;
+
+
 // preload()
 //
 // Loads the target and decoy images before the program starts
 function preload() {
   targetImage = loadImage("assets/images/animals-target.png");
+
+  displayImage = loadImage("assets/images/animals-target.png");
 
   decoyImage1 = loadImage("assets/images/animals-01.png");
   decoyImage2 = loadImage("assets/images/animals-02.png");
@@ -108,9 +120,22 @@ function setup() {
   targetY = random(0,height);
   // And draw it (this means it will always be on top)
   image(targetImage,targetX,targetY);
+  // Draw a rectangle at the top right of the canvas
+    rectX = windowWidth - 200;
+    rectY = windowHeight- (windowHeight-1);
+    fill(255,220,220);
+    rect(rectX,rectY,200,300);
+
+
+  //Putting the display image on the rectangle
+  displayImageX= windowWidth-100;
+  displayImageY = windowHeight- (windowHeight-200);
+
 }
 
 function draw() {
+  image(displayImage,displayImageX,displayImageY,150,200);
+
   if (gameOver) {
     // Prepare our typography
     textFont("Helvetica");
@@ -139,4 +164,5 @@ function mousePressed() {
       gameOver = true;
     }
   }
+
 }
