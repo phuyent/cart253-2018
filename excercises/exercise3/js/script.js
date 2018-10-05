@@ -43,10 +43,9 @@ var displayImageY;
 var rectX;
 var rectY;
 
-//The caption and the position of it
+//The position of the caption
 var captionX;
 var captionY;
-
 
 // preload()
 //
@@ -119,30 +118,32 @@ function setup() {
     }
   }
 
+  //Draw a rectangle at the top right of the canvas
+  rectX = windowWidth - 200;
+  rectY = windowHeight - (windowHeight-1);
+  fill(250,220,220);
+  rect(rectX,rectY,200,300);
+
   // Once we've displayed all decoys, we choose a location for the target
   targetX = random(0,width);
   targetY = random(0,height);
   // And draw it (this means it will always be on top)
   image(targetImage,targetX,targetY);
+
   //The caption position and appearance
-  captionX = windowWidth - 20;
-  captionY = windowHeight - (windowHeight-10);
-  textSize (12);
-  fill(220);
+  captionX = windowWidth-160;
+  captionY = windowHeight/7;
+  textSize (30);
+  fill(255);
+  text('WANTED',captionX,captionY);
+
+//Putting the display image on the rectangle
+  displayImageX= windowWidth-100;
+  displayImageY = windowHeight- (windowHeight-200);
+//Draw the image
+  image(displayImage,displayImageX,displayImageY,150,200);
 
 
-    //Putting the display image on the rectangle
-    displayImageX= windowWidth-100;
-    displayImageY = windowHeight- (windowHeight-200);
-
-  // Draw a rectangle at the top right of the canvas
-    rectX = windowWidth - 200;
-    rectY = windowHeight- (windowHeight-1);
-    fill(255,220,220);
-    rect(rectX,rectY,200,300);
-
-    text ('WANTED', captionX, captionY);
-    image(displayImage,displayImageX,displayImageY,150,200);
 
 }
 
