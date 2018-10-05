@@ -49,6 +49,10 @@ var rectY;
 var captionX;
 var captionY;
 
+// The decoy variable to change sizes
+var decoyWidth;
+var decoyHeight;
+
 // preload()
 //
 // Loads the target and decoy images before the program starts
@@ -120,6 +124,10 @@ function setup() {
     }
   }
 
+  //The size changes randomly
+  decoySizeX = random(0,30);
+  decoySizeY = random(0,30);
+
 
   //Draw a rectangle at the top right of the canvas
   rectX = windowWidth - 200;
@@ -149,7 +157,17 @@ function setup() {
   displayImageY = windowHeight- (windowHeight-200);
 //Draw the image
   image(displayImage,displayImageX,displayImageY,150,200);
-
+// Draw the decoys randomly
+image(decoyImage1, x,y,decoySizeX,decoySizeY);
+image(decoyImage2, x,y,decoySizeX,decoySizeY);
+image(decoyImage3, x,y,decoySizeX,decoySizeY);
+image(decoyImage4, x,y,decoySizeX,decoySizeY);
+image(decoyImage5, x,y,decoySizeX,decoySizeY);
+image(decoyImage6, x,y,decoySizeX,decoySizeY);
+image(decoyImage7, x,y,decoySizeX,decoySizeY);
+image(decoyImage8, x,y,decoySizeX,decoySizeY);
+image(decoyImage9, x,y,decoySizeX,decoySizeY);
+image(decoyImage10, x,y,decoySizeX,decoySizeY);
 }
 
 
