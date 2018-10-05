@@ -43,6 +43,10 @@ var displayImageY;
 var rectX;
 var rectY;
 
+//The caption and the position of it
+var captionX;
+var captionY;
+
 
 // preload()
 //
@@ -120,21 +124,30 @@ function setup() {
   targetY = random(0,height);
   // And draw it (this means it will always be on top)
   image(targetImage,targetX,targetY);
+  //The caption position and appearance
+  captionX = windowWidth - 20;
+  captionY = windowHeight - (windowHeight-10);
+  textSize (12);
+  fill(220);
+
+
+    //Putting the display image on the rectangle
+    displayImageX= windowWidth-100;
+    displayImageY = windowHeight- (windowHeight-200);
+
   // Draw a rectangle at the top right of the canvas
     rectX = windowWidth - 200;
     rectY = windowHeight- (windowHeight-1);
     fill(255,220,220);
     rect(rectX,rectY,200,300);
 
-
-  //Putting the display image on the rectangle
-  displayImageX= windowWidth-100;
-  displayImageY = windowHeight- (windowHeight-200);
+    text ('WANTED', captionX, captionY);
+    image(displayImage,displayImageX,displayImageY,150,200);
 
 }
 
+
 function draw() {
-  image(displayImage,displayImageX,displayImageY,150,200);
 
   if (gameOver) {
     // Prepare our typography
