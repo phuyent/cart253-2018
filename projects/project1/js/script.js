@@ -16,7 +16,8 @@ var gameOver = false;
 // Player position, size, velocity
 var playerX;
 var playerY;
-var playerRadius = 25;
+//NEW: Change the radius of the player//
+var playerRadius = 10;
 var playerVX = 0;
 var playerVY = 0;
 var playerMaxSpeed = 2;
@@ -27,9 +28,10 @@ var playerMaxHealth = 255;
 var playerFill = 50;
 
 // Prey position, size, velocity
+//NEW CODE: THE RANDOM PREY RADIUS//
 var preyX;
 var preyY;
-var preyRadius = 25;
+var preyRadius;
 var preyVX;
 var preyVY;
 var preyMaxSpeed = 4;
@@ -51,6 +53,8 @@ var healthLoss = 0.5;
 var sprintSpeed = 20;
 //The normal speed when Shift key is released//
 var normalSpeed = 2;
+//Player size when it successfully eats//
+var playerSize = 40;
 
 //
 
@@ -147,8 +151,7 @@ function keyPressed(){
   if (keyCode === SHIFT) {
     playerMaxSpeed = sprintSpeed;
     healthLoss = healthLoss*2;
-
-  }
+    }
 }
 
 function keyReleased(){
@@ -205,6 +208,8 @@ function checkEating() {
   var d = dist(playerX,playerY,preyX,preyY);
   // Check if it's an overlap
   if (d < playerRadius + preyRadius) {
+    //NEW CODE: The more the player eats, the bigger it gets//
+  playerSize = playerRadius*10;
     // Increase the player health
     playerHealth = constrain(playerHealth + eatHealth,0,playerMaxHealth);
     // Reduce the prey health
@@ -270,6 +275,8 @@ function movePrey() {
 //
 // Draw the prey as an ellipse with alpha based on health
 function drawPrey() {
+  //NEW CODE: CHANGING THE PREY'S SIZE//
+  preyRadius = random(30,50);
   fill(preyFill,preyHealth);
   ellipse(preyX,preyY,preyRadius*2);
 
@@ -280,7 +287,7 @@ function drawPrey() {
 // Draw the player as an ellipse with alpha based on health
 function drawPlayer() {
   fill(playerFill,playerHealth);
-  ellipse(playerX,playerY,playerRadius*2);
+  ellipse(playerX,playerY,playerSize);
 }
 
 // showGameOver()
