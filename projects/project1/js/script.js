@@ -44,6 +44,7 @@ var eatHealth = 10;
 // Number of prey eaten during the game
 var preyEaten = 0;
 
+
 // setup()
 //
 // Sets up the basic elements of the game
@@ -66,6 +67,7 @@ function setupPrey() {
   preyVY = preyMaxSpeed;
   preyHealth = preyMaxHealth;
 }
+
 
 // setupPlayer()
 //
@@ -194,22 +196,28 @@ function checkEating() {
     }
   }
 }
-
-// movePrey()
-//
-// Moves the prey based on random velocity changes
 function movePrey() {
-  // Change the prey's velocity at random intervals
+  //NEW CODE: PERLIN NOISE//
+  //The random x start point for the prey
+  var startX = random(100,400);
+  //The andom y start point for the prey
+  var startY = random(200,300);
+// Change the prey's velocity at random intervals
   // random() will be < 0.05 5% of the time, so the prey
   // will change direction on 5% of frames
+  //NEW : REPLACED RANDOM CODE WITH NOISE CODE//
   if (random() < 0.05) {
     // Set velocity based on random values to get a new direction
     // and speed of movement
     // Use map() to convert from the 0-1 range of the random() function
     // to the appropriate range of velocities for the prey
-    preyVX = map(random(),0,1,-preyMaxSpeed,preyMaxSpeed);
-    preyVY = map(random(),0,1,-preyMaxSpeed,preyMaxSpeed);
+    //NEW : REPLACED RANDOM CODE WITH NOISE CODE//
+    preyVX = map(noise(startX),0,1,-preyMaxSpeed,preyMaxSpeed);
+    preyVY = map(noise(startY),0,1,-preyMaxSpeed,preyMaxSpeed);
   }
+    //NEW: THE AMOUNT OF VALUE ADDED TO EACH X AND Y START POINT//
+      startX += 0.002;
+      startY += 0.001;
 
   // Update prey position based on velocity
   preyX += preyVX;
@@ -231,12 +239,14 @@ function movePrey() {
   }
 }
 
+
 // drawPrey()
 //
 // Draw the prey as an ellipse with alpha based on health
 function drawPrey() {
   fill(preyFill,preyHealth);
   ellipse(preyX,preyY,preyRadius*2);
+
 }
 
 // drawPlayer()
