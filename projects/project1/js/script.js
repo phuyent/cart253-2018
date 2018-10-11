@@ -44,6 +44,15 @@ var eatHealth = 10;
 // Number of prey eaten during the game
 var preyEaten = 0;
 
+//NEW VARIBLES ZONE//
+//How much health the player lose//
+var healthLoss = 0.5;
+//The fast speed when Shift key is pressed//
+var sprintSpeed = 20;
+//The normal speed when Shift key is released//
+var normalSpeed = 2;
+
+//
 
 // setup()
 //
@@ -132,6 +141,23 @@ function handleInput() {
   }
 }
 
+//NEW CODE: SPRINT THE PLAYER WHEN PRESSED SHIFT KEY//
+//Add the ability to sprint//
+function keyPressed(){
+  if (keyCode === SHIFT) {
+    playerMaxSpeed = sprintSpeed;
+    healthLoss = healthLoss*2;
+
+  }
+}
+
+function keyReleased(){
+  if (keyCode === SHIFT){
+  playerMaxSpeed = normalSpeed;
+  healthLoss = healthLoss;
+  }
+}
+
 // movePlayer()
 //
 // Updates player position based on velocity,
@@ -163,7 +189,7 @@ function movePlayer() {
 // Check if the player is dead
 function updateHealth() {
   // Reduce player health, constrain to reasonable range
-  playerHealth = constrain(playerHealth - 0.5,0,playerMaxHealth);
+  playerHealth = constrain(playerHealth - healthLoss,0,playerMaxHealth);
   // Check if the player is dead
   if (playerHealth === 0) {
     // If so, the game is over
