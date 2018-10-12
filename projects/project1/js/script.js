@@ -16,8 +16,8 @@ var gameOver = false;
 // Player position, size, velocity
 var playerX;
 var playerY;
-//NEW: Change the radius of the player//
-var playerRadius = 10;
+//NEW: Change the radius of the player to fit the image size//
+var playerRadius = 50;
 var playerVX = 0;
 var playerVY = 0;
 //NEW: Tune the player max speed
@@ -29,10 +29,10 @@ var playerMaxHealth = 255;
 var playerFill = 50;
 
 // Prey position, size, velocity
-//NEW CODE: THE RANDOM PREY RADIUS//
+//NEW CODE: Change the radius of the prey to fit the image//
 var preyX;
 var preyY;
-var preyRadius;
+var preyRadius = 25 ;
 var preyVX;
 var preyVY;
 //NEW: Tune the prey max speed
@@ -57,8 +57,27 @@ var sprintSpeed = 20;
 var normalSpeed = 2;
 //Player size when it successfully eats//
 var playerSize = 40;
+//The new image of the player
+var playerImage;
+//The new image of the prey
+var preyImage;
+//The music for the game
+var softMusic;
+//The new background
+var grassBackground;
 
 //
+//preload()
+//
+//Preload the music and images
+function preload(){
+  grassBackground = loadImage('assets/images/grass.jpg')
+  playerImage = loadImage('assets/images/hamster.jpg');
+  preyImage = loadImage('assets/images/strawberry.jpg');
+  softMusic = new Audio('assets/sounds/softmusic.mp3');
+
+}
+
 
 // setup()
 //
@@ -66,10 +85,16 @@ var playerSize = 40;
 function setup() {
   createCanvas(500,500);
 
+  //NEW Background
+  image(grassBackground,0,0,windowWidth,windowHeight);
+
   noStroke();
 
   setupPrey();
   setupPlayer();
+
+  //NEW: Add sound playing none stop, even when the game ends :)
+  softMusic.play();
 }
 
 // setupPrey()
@@ -101,7 +126,9 @@ function setupPlayer() {
 // displays the two agents.
 // When the game is over, shows the game over screen.
 function draw() {
-  background(100,100,200);
+
+  //Draw again background in order not to show the player & prey trails
+  image(grassBackground,0,0,windowWidth,windowHeight);
 
   if (!gameOver) {
     handleInput();
@@ -275,21 +302,16 @@ function movePrey() {
 
 // drawPrey()
 //
-// Draw the prey as an ellipse with alpha based on health
+// NEW: The image of the prey (the strawberry)
 function drawPrey() {
-  //NEW CODE: CHANGING THE PREY'S SIZE//
-  preyRadius = random(30,50);
-  fill(preyFill,preyHealth);
-  ellipse(preyX,preyY,preyRadius*2);
-
+  image(preyImage,preyX,preyY,50,50)
 }
 
 // drawPlayer()
 //
-// Draw the player as an ellipse with alpha based on health
+// NEW: The image of the hamster
 function drawPlayer() {
-  fill(playerFill,playerHealth);
-  ellipse(playerX,playerY,playerSize);
+image(playerImage,playerX,playerY,100,100);
 }
 
 // showGameOver()
@@ -298,9 +320,9 @@ function drawPlayer() {
 function showGameOver() {
   textSize(32);
   textAlign(CENTER,CENTER);
-  fill(0);
+  fill(220,255,0);
   var gameOverText = "GAME OVER\n";
-  gameOverText += "You ate " + preyEaten + " prey\n";
-  gameOverText += "before you died."
+  gameOverText += "Cute hamster eats " + preyEaten + " prey\n";
+  gameOverText += "before it died."
   text(gameOverText,width/2,height/2);
 }
