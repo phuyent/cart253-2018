@@ -20,7 +20,8 @@ var playerY;
 var playerRadius = 10;
 var playerVX = 0;
 var playerVY = 0;
-var playerMaxSpeed = 2;
+//NEW: Tune the player max speed
+var playerMaxSpeed = 8;
 // Player health
 var playerHealth;
 var playerMaxHealth = 255;
@@ -34,7 +35,8 @@ var preyY;
 var preyRadius;
 var preyVX;
 var preyVY;
-var preyMaxSpeed = 4;
+//NEW: Tune the prey max speed
+var preyMaxSpeed = 6;
 // Prey health
 var preyHealth;
 var preyMaxHealth = 100;
