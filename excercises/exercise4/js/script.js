@@ -40,8 +40,10 @@ var leftPaddle = {
   speed: 5,
   upKeyCode: 87, // The key code for W
   downKeyCode: 83, // The key code for S
-  //NEW VARIABLE
-  score: 0
+  //NEW VARIABLES
+  score: 0,
+  color: fgColor
+
 }
 
 // RIGHT PADDLE
@@ -58,8 +60,9 @@ var rightPaddle = {
   speed: 5,
   upKeyCode: 38, // The key code for the UP ARROW
   downKeyCode: 40, // The key code for the DOWN ARROW
-  //NEW VARIABLE
-  score: 0
+  //NEW VARIABLES
+  score: 0,
+  color: fgColor
 }
 
 // A variable to hold the beep sound we will play on bouncing
@@ -144,6 +147,9 @@ function draw() {
   displayPaddle(leftPaddle);
   displayPaddle(rightPaddle);
   displayBall();
+
+  //NEW CALL FOR THE DISPLAY SCORE FUNCTION
+  handleDisplayScore();
 }
 
 
@@ -268,12 +274,12 @@ function handleBallOffScreen() {
     // This is where we would count points etc!
     //NEW: COUNT POINTS
   if ( ballRight < 0) {
-    leftPaddle.score = leftPaddle.score +1
-  }
+    leftPaddle.score = leftPaddle.score +1;
+}
   if (ballLeft > width) {
     rightPaddle.score = rightPaddle.score +1;
-  }
-  }
+}
+}
 }
 
 // displayBall()
@@ -287,5 +293,19 @@ function displayBall() {
 //
 // Draws the specified paddle on screen based on its properties
 function displayPaddle(paddle) {
+  fill(paddle.color);
   rect(paddle.x,paddle.y,paddle.w,paddle.h);
+
+}
+//NEW CODE PART 3
+//Change the color of the paddles based on the score
+function handleDisplayScore() {
+  if (leftPaddle.score > 0 || rightPaddle.score > 0) {
+    leftPaddle.color = 225;
+    rightPaddle.color = 225;
+}
+  if (leftPaddle.score > 0 && rightPaddle.score >0) {
+    leftPaddle.color = 225;
+    rightPaddle.color = 225;
+}
 }
