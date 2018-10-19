@@ -18,7 +18,7 @@ var ball = {
   size: 20,
   vx: 0,
   vy: 0,
-  speed: 5
+  speed: 5,
 }
 
 // PADDLES
@@ -69,12 +69,24 @@ var rightPaddle = {
 // A variable to hold the beep sound we will play on bouncing
 var beepSFX;
 
+//NEW: A new sound variable
+var softMusic;
+//END NEW
+
+//NEW: A new background
+var backgroundImage;
+
 
 // preload()
 //
 // Loads the beep audio for the sound of bouncing
 function preload() {
-  beepSFX = new Audio("assets/sounds/beep.wav");
+  //NEW: CHANGE BACKGROUND AND MUSIC
+  //Preload the music, background
+  backgroundImage = loadImage('assets/images/background.png');
+  softMusic = new Audio('assets/sounds/music.mp3');
+
+
 }
 
 // setup()
@@ -91,6 +103,11 @@ function setup() {
 
   setupPaddles();
   setupBall();
+  //NEW: Add new background
+  image(backgroundImage,0,0,width,height);
+  // NEW: Play the new music
+  softMusic.play();
+
 }
 
 // setupPaddles()
@@ -120,9 +137,6 @@ function setupBall() {
 //
 // Calls the appropriate functions to run the game
 function draw() {
-  // Fill the background
-  background(bgColor);
-
   // Handle input
   // Notice how we're using the SAME FUNCTION to handle the input
   // for the two paddles!
@@ -220,9 +234,8 @@ function handleBallWallCollision() {
   if (ballTop < 0 || ballBottom > height) {
     // If it touched the top or bottom, reverse its vy
     ball.vy = -ball.vy;
-    // Play our bouncing sound effect by rewinding and then playing
-    beepSFX.currentTime = 0;
-    beepSFX.play();
+    // NEW: Play the new music
+    softMusic.play();
   }
 }
 
@@ -250,9 +263,8 @@ function handleBallPaddleCollision(paddle) {
     if (ballLeft < paddleRight && ballRight > paddleLeft) {
       // Then the ball is touching the paddle so reverse its vx
       ball.vx = -ball.vx;
-      // Play our bouncing sound effect by rewinding and then playing
-      beepSFX.currentTime = 0;
-      beepSFX.play();
+      // NEW: Play the new music
+      softMusic.play();
     }
   }
 }
