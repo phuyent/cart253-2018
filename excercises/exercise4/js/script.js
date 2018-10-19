@@ -43,7 +43,7 @@ var leftPaddle = {
   //NEW VARIABLES
   score: 0,
   color: fgColor
-
+  //END NEW
 }
 
 // RIGHT PADDLE
@@ -63,6 +63,7 @@ var rightPaddle = {
   //NEW VARIABLES
   score: 0,
   color: fgColor
+  //END NEW
 }
 
 // A variable to hold the beep sound we will play on bouncing
@@ -150,6 +151,9 @@ function draw() {
 
   //NEW CALL FOR THE DISPLAY SCORE FUNCTION
   handleDisplayScore();
+  //END CALL
+
+
 }
 
 
@@ -272,15 +276,22 @@ function handleBallOffScreen() {
     // carries on moving with the same velocity after its
     // position is reset.
     // This is where we would count points etc!
-    //NEW: COUNT POINTS
+
+    //NEW: COUNT POINTS//
+
+  //If the ball goes off the right side
   if ( ballRight < 0) {
-    leftPaddle.score = leftPaddle.score +1;
+  //Then the left paddle gets one point
+    leftPaddle.score = leftPaddle.score + 1;
 }
+  //If the ball goes off the left side
   if (ballLeft > width) {
-    rightPaddle.score = rightPaddle.score +1;
+  //Then the right paddle gets one point
+    rightPaddle.score = rightPaddle.score + 1;
 }
 }
 }
+      //END NEW COUNT POINTS//
 
 // displayBall()
 //
@@ -307,5 +318,32 @@ function handleDisplayScore() {
   if (leftPaddle.score > 0 && rightPaddle.score >0) {
     leftPaddle.color = 225;
     rightPaddle.color = 225;
+}
+}
+//END NEW PART 3
+
+
+//NEW CODE PART 4
+//Add function reset()
+//Reset the ball launch direction
+function reset() {
+  //If the recent left paddle score is higher
+if (leftPaddle.score > rightPaddle.score) {
+  //Then reset the ball to launch to the left first with a random y velocity
+  ball.vx = -3;
+  ball.speed = random(10,20);
+  ball.vy = ball.speed;
+}
+  //If the recent right paddle score is higher
+if (rightPaddle.score > leftPaddle.score) {
+  //Then reset the ball to launch to the right first with a rrandom velocity
+  ball.vx = 3;
+  ball.speed = random(10,20);
+  ball.vy = ball.speed;
+  //If both score are equal, the ball just randomly appear
+if (leftPaddle.score = rightPaddle.score) {
+  ball.x = width/2;
+  ball.y = height/2;
+}
 }
 }
