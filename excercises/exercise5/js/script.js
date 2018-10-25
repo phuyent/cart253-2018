@@ -13,6 +13,11 @@
 var ball;
 var leftPaddle;
 var rightPaddle;
+//PART 2 NEW: DEFINE DIRECTIONS WITH CONST SO IT DOES NOT CHANGE OVER TIME//
+const GO_LEFT = 1;
+const GO_RIGHT = 2;
+const ON_SCREEN = 3;
+//END PART 2 NEW//
 
 // setup()
 //
