@@ -42,10 +42,14 @@ function setup() {
 function draw() {
   background(0);
   //PART 3 NEW: DISPLAY SCORE//
+  //PART 4 NEW CODE: BALL LAUNCHES TO THE PADDLE WITH MORE POINTS
   //If the ball falls off the right side//
   if ((ball.isOffScreen() === 2)) {
     //Reset ball
     ball.reset();
+    //The ball will launch on the left with random y velocity
+    ball.vx = -ball.speed;
+    ball.vy = random(-20,10);
     //Add one score to the left side//
     leftPaddle.score += 1;
   }
@@ -53,9 +57,13 @@ function draw() {
   if (ball.isOffScreen() === 1) {
     //Reset ball
     ball.reset();
+    //The ball will launch on the right with random y velocity
+    ball.vx = ball.speed;
+    ball.vy = random(-20,10);
     //Add one score to the right side //
     rightPaddle.score += 1;
     //END PART 3 NEW//
+    //END PART 4 NEW//
   }
   leftPaddle.handleInput();
   rightPaddle.handleInput();
