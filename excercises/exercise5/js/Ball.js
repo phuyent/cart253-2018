@@ -43,22 +43,14 @@ Ball.prototype.isOffScreen = function () {
   // Check for going off screen and reset if so
   if (this.x + this.size < 0 ) {
     //PART 2 NEW: Represent return with STRINGS//
-    return GO_LEFT;
-
+    return GO_RIGHT;
   }
   if (this.x > width ) {
-    return GO_RIGHT;
-
-<<<<<<< HEAD
+    return GO_LEFT;
+  }
   if (this.x + this.size > 0 && this.x < width){
-    return ON_SCREEN;
-    //END PART 2 NEW//
-=======
-    if (this.x + this.size > 0 && this.x < width){
       return ON_SCREEN;
-      //END PART 2 NEW//
->>>>>>> 22f8d6601cc60cc5d65d92d673c7e006e2534111
-    }
+     //END PART 2 NEW//
   }
 }
 
