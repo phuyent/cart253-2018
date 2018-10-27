@@ -49,8 +49,8 @@ Ball.prototype.isOffScreen = function () {
     return GO_LEFT;
   }
   if (this.x + this.size > 0 && this.x < width){
-      return ON_SCREEN;
-     //END PART 2 NEW//
+    return ON_SCREEN;
+    //END PART 2 NEW//
   }
 }
 

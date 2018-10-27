@@ -42,21 +42,21 @@ function setup() {
 function draw() {
   background(0);
   //PART 3 NEW: DISPLAY SCORE//
-  //If the ball falls off the left side//
+  //If the ball falls off the right side//
   if ((ball.isOffScreen() === 2)) {
     //Reset ball
     ball.reset();
-    //Add one score to the right side//
-    rightPaddle.score += 1;
+    //Add one score to the left side//
+    leftPaddle.score += 1;
   }
-  //If the ball falls off the right side//
+  //If the ball falls off the left side//
   if (ball.isOffScreen() === 1) {
     //Reset ball
     ball.reset();
-    //Add one score to the left side //
-    leftPaddle.score += 1;
-  //END PART 3 NEW//
-}
+    //Add one score to the right side //
+    rightPaddle.score += 1;
+    //END PART 3 NEW//
+  }
   leftPaddle.handleInput();
   rightPaddle.handleInput();
 
