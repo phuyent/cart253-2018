@@ -19,6 +19,21 @@ const GO_RIGHT = 2;
 const ON_SCREEN = 3;
 //END PART 2 NEW//
 
+//PART 5 NEW: CHANGE BACKGROUND & BALL, ADD MUSIC//
+var background;
+var softMusic;
+//END PART 5 NEW//
+
+//PART 5 NEW: PRELOAD//
+//preload()
+//
+//Load the background, image for the ball and music before the program runs
+function preload() {
+  background = loadImage('assets/images/background.png');
+  softMusic = new Audio('assets/sounds/music.mp3');
+}
+//END PART 5 NEW//
+
 // setup()
 //
 // Creates the ball and paddles
@@ -33,6 +48,11 @@ function setup() {
   // Keycodes 83 and 87 are W and S respectively
   leftPaddle = new Paddle(0,height/2,10,60,10,83,87,0,50);
   //PART 3 END NEW//
+
+  //PART 5 NEW CODE//
+  //Play the music//
+  softMusic.play();
+  //END PART 5 NEW//
 }
 
 // draw()
@@ -40,7 +60,11 @@ function setup() {
 // Handles input, updates all the elements, checks for collisions
 // and displays everything.
 function draw() {
-  background(0);
+  //PART 5 NEW//
+  //Change the background//
+  //Different from exercise 4, the ball will not leave trails
+  image(background,0,0,windowWidth,windowHeight);
+  //END PART 5 NEW//
   //PART 3 NEW: DISPLAY SCORE//
   //PART 4 NEW CODE: BALL LAUNCHES TO THE PADDLE WITH MORE POINTS
   //If the ball falls off the right side//
