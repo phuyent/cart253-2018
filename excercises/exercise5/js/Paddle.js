@@ -6,8 +6,13 @@
 // Paddle constructor
 //
 // Sets the properties with the provided arguments or defaults
+<<<<<<< HEAD
   //NEW PART 3: DISPLAY SCORE//
 function Paddle(x,y,w,h,speed,downKey,upKey,score) {
+=======
+//NEW PART 3: DISPLAY SCORE//
+function Paddle(x,y,w,h,speed,downKey,upKey,score,positionX) {
+>>>>>>> 22f8d6601cc60cc5d65d92d673c7e006e2534111
   this.x = x;
   this.y = y;
   this.vx = 0;
@@ -17,7 +22,13 @@ function Paddle(x,y,w,h,speed,downKey,upKey,score) {
   this.speed = speed;
   this.downKey = downKey;
   this.upKey = upKey;
+<<<<<<< HEAD
   this.score = score;
+=======
+  //The score and the x position to display score//
+  this.score = score;
+  this.positionX = positionX
+>>>>>>> 22f8d6601cc60cc5d65d92d673c7e006e2534111
   //PART 3 END NEW//
 }
 
@@ -54,8 +65,12 @@ Paddle.prototype.display = function() {
 }
 
 Paddle.prototype.displayScore = function() {
+<<<<<<< HEAD
   text('Right Paddle Score:  '+ rightPaddle.score,400,50);
   text('Left Paddle Score: ' + leftPaddle.score,50,50);
+=======
+  text('Score: ' +this.score,this.positionX,50);
+>>>>>>> 22f8d6601cc60cc5d65d92d673c7e006e2534111
   textSize(20);
   fill(220);
 }
