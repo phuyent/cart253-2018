@@ -30,6 +30,7 @@ function setup() {
 
 
 
+
 // draw()
 //
 // Handles input, updates all the elements, checks for collisions
@@ -54,5 +55,7 @@ function draw() {
 
   ball.display();
   leftPaddle.display();
-  rightPaddle.display(;
+/////FIXED ERROR 9 (ACCORDING TO CONSOLE): Missing ')'
+  rightPaddle.display();
+/////END FIXED ERROR 9/////
 }
