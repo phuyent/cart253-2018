@@ -7,7 +7,10 @@
 //Paddle constructor
 //Sets the properties with the provided arguments or defaults
 /////END ERROR 5/////
-function Pladdle(x,y,w,h,speed,downKey,upKey) {
+
+/////FIXED ERROR 7( ACCORDING TO CONSOLE): Misspell 'Paddle'/////
+function Paddle(x,y,w,h,speed,downKey,upKey) {
+/////END FIXED ERROR 7/////
   this.x = x;
   this.y = y;
   this.xv = 0;
@@ -23,7 +26,7 @@ function Pladdle(x,y,w,h,speed,downKey,upKey) {
 //
 // Check if the up or down keys are pressed and update velocity
 // appropriately
-Paddle.proto.handleInput = function() {
+Paddle.prototype.handleInput = function() {
   if (keyDown(upKey)) {
     this.vy = -this.speed;
   }
