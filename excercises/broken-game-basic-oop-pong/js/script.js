@@ -40,6 +40,7 @@ function draw() {
   rightPaddle.handleInput();
 /////FIXED ERROR 1 (ACCORDING TO CONSOLE): Missing the '()' for ball update/////
   ball.update();
+/////END FIXED 1/////
   leftPaddle.update();
   rightPaddle.update();
 

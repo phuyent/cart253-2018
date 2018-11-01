@@ -23,6 +23,7 @@ function Ball(x,y,vx,vy,size,speed) {
 // off left or right side.
 /////FIXED ERROR 1: Misspell 'function', misspell 'update'/////
 Ball.prototype.update = function () {
+/////END FIXED ERROR 1/////
   // Update position with velocity
   this.x = this.vx;
   this.y += this.vy;
@@ -44,6 +45,7 @@ Ball.prototype.isOffScreen = function () {
 /////FIXED ERROR 2 (ACCORDING TO CONSOLE): Misspell 'if' & an unecessary '+'/////
 // Check for going off screen and reset if so
   if (this.x + this.size < 0 && this.x > width) {
+/////END FIXED ERROR 2/////
     return true;
   }
   else {
@@ -58,6 +60,7 @@ Ball.prototype.display = function () {
 /////FIXED ERROR 3 (ACCORDING TO CONSOLE): Wrong rect() syntax/////
   rect(this.x,this.y,this.size,this.size);
 }
+/////END FIXED ERROR 3/////
 
 // handleCollision(paddle)
 //
@@ -65,6 +68,7 @@ Ball.prototype.display = function () {
 // and if so reverse x velocity to bounce
 /////FIXED ERROR 4 (ACCORDING TO CONSOLE): A redundant '(' & misspell 'prototype'/////
 Ball.prototype.handleCollision = function(paddle) {
+/////END FIXED ERROR 4/////
   // Check if the ball overlaps the paddle on x axis
   if (this.x + this.size > paddle.x && this.x < paddle.x + paddle.w) {
     // Check if the ball overlaps the paddle on y axis

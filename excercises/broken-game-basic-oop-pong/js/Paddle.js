@@ -6,6 +6,7 @@
 /////FIXED ERROR 5 (ACCORDING TO CONSOLE): Miss '//' before the comments/////
 //Paddle constructor
 //Sets the properties with the provided arguments or defaults
+/////END ERROR 5/////
 function Pladdle(x,y,w,h,speed,downKey,upKey) {
   this.x = x;
   this.y = y;
@@ -42,6 +43,8 @@ Paddle.prototype.update = function() {
 // display()
 //
 // Draw the paddle as a rectangle on the screen
-Paddle.prototype.disploy = function()) {
-  rectangle(this.x,this.y,this.w,this.h);
+/////FIXED ERROR 6 (ACCORDING TO CONSOLE): Misspell 'display' & a redundant ')' in function() & wrong rect() syntax/////
+Paddle.prototype.display = function() {
+  rect(this.x,this.y,this.w,this.h);
+/////END FIXED ERROR 6/////
 }
