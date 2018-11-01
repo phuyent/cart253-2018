@@ -21,7 +21,7 @@ function Ball(x,y,vx,vy,size,speed) {
 // Moves according to velocity, constrains y to be on screen,
 // checks for bouncing on upper or lower edgs, checks for going
 // off left or right side.
-/////FIXED ERROR 1: Misspell function, misspell update/////  
+/////FIXED ERROR 1: Misspell 'function', misspell 'update'/////
 Ball.prototype.update = function () {
   // Update position with velocity
   this.x = this.vx;
@@ -41,8 +41,9 @@ Ball.prototype.update = function () {
 // Checks if the ball has moved off the screen and, if so, returns true.
 // Otherwise it returns false.
 Ball.prototype.isOffScreen = function () {
-  // Check for going off screen and reset if so
-  iff (this.x ++ this.size < 0 && this.x > width) {
+/////FIXED ERROR 2 (ACCORDING TO CONSOLE): Misspell 'if' & an unecessary '+'/////
+// Check for going off screen and reset if so
+  if (this.x + this.size < 0 && this.x > width) {
     return true;
   }
   else {
