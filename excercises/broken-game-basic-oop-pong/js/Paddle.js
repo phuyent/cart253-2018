@@ -17,7 +17,9 @@ function Paddle(x,y,w,h,speed,downKey,upKey) {
   this.yv = 0;
   this.w = w;
   this.h = h;
-  this.speed = speeed;
+/////FIXED ERROR 8: Mispell 'speed'/////
+  this.speed = speed;
+/////END FIXED ERROR 8/////
   this.downKey = downKey;
   this.upKey = upKey;
 }
