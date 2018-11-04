@@ -61,6 +61,10 @@ Ball.prototype.isOffScreen = function () {
 //
 // Draw the ball as a rectangle on the screen
 Ball.prototype.display = function () {
+/////FIXED ERROR 14: Add color to the ball/////
+fill(255);
+/////END FIXED ERROR 14/////
+
 /////FIXED ERROR 3 (ACCORDING TO CONSOLE): Wrong rect() syntax/////
   rect(this.x,this.y,this.size,this.size);
 }
