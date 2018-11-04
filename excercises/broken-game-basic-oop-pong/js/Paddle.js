@@ -39,12 +39,18 @@ Paddle.prototype.handleInput = function() {
     this.vy = -this.speed;
   }
   else if (keyIsDown(this.downKey)) {
-  /////FIXED ERROR 26: The direction when the down key is pressed/////
+    /////FIXED ERROR 26: The direction when the down key is pressed/////
     this.vy = this.speed;
     /////END FIXED ERROR 26/////
     /////END FIXED ERROR 18/////
   }
-}
+    /////FIXED ERROR 27: Missing the state when no key is pressed/////
+  else {
+      this.vy = 0;
+      /////END FIXED 27/////
+    }
+  }
+
 
 // update()
 // Update y position based on velocity
