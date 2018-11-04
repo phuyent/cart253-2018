@@ -93,7 +93,9 @@ Ball.prototype.handleCollision = function(paddle) {
 // reset()
 //
 // Set position back to the middle of the screen
-Ball.prototype.rest = function () {
+/////FIXED ERROR 25: Misspell 'reset'/////
+Ball.prototype.reset = function () {
+/////END FIXED ERROR 25/////
   this.x = width/2;
   this.y = height/2;
 }
