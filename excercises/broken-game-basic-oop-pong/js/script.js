@@ -26,8 +26,10 @@ function setup() {
   noStroke();
   // Create a ball
   /////FIXED ERROR 24: Adjust the speed of the ball so the paddles can hit it/////
-  ball = new Ball(width/2,height/2,50,50,10,5);
+  /////FIXED ERROR 31: Change the ball x and y velocity so the paddle can hit it/////
+  ball = new Ball(width/2,height/2,5,5,10,5);
   /////END FIXED ERROR 24/////
+  /////END FIXED ERROR 31/////
   // Create the right paddle with UP and DOWN as controls
   /////FIXED ERROR 23: Adjust the height of the right paddle to
   /////make it appear on canvas
