@@ -14,7 +14,9 @@ function Paddle(x,y,w,h,speed,downKey,upKey) {
   this.x = x;
   this.y = y;
   this.xv = 0;
-  this.yv = 0;
+/////FIXED ERROR 21: Mistype 'this.vy'/////
+  this.vy = 0;
+/////END FIXED ERROR 21/////
   this.w = w;
   this.h = h;
 /////FIXED ERROR 8: Mispell 'speed'/////
