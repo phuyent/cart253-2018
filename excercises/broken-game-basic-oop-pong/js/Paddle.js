@@ -39,7 +39,9 @@ Paddle.prototype.handleInput = function() {
     this.vy = -this.speed;
   }
   else if (keyIsDown(this.downKey)) {
-    this.vy = -this.speed;
+  /////FIXED ERROR 26: The direction when the down key is pressed/////
+    this.vy = this.speed;
+    /////END FIXED ERROR 26/////
     /////END FIXED ERROR 18/////
   }
 }
