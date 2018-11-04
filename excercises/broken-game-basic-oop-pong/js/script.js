@@ -50,8 +50,10 @@ function draw() {
   leftPaddle.update();
   rightPaddle.update();
 /////FIXED ERROR 17: Missing one opening curly bracket/////
-  if (ball.isOffTheScreen()){
+/////FIXED ERROR 20: Mistype 'ballIsOffScreen'/////
+  if (ball.isOffScreen()){
 /////END FIXED ERROR 17/////
+/////END FIXED ERROR 20/////
     reset();
   }
 
