@@ -29,11 +29,13 @@ function Paddle(x,y,w,h,speed,downKey,upKey) {
 // Check if the up or down keys are pressed and update velocity
 // appropriately
 Paddle.prototype.handleInput = function() {
-  if (keyDown(upKey)) {
+/////FIXED ERROR 18 (ACCORDING TO CONSOLE): Unidentified 'upKey' and 'downKey' & mistype 'keyIsDown'/////
+  if (keyIsDown(this.upKey)) {
     this.vy = -this.speed;
   }
-  else if (keyDown(downKey)) {
+  else if (keyIsDown(this.downKey)) {
     this.vy = -this.speed;
+/////END FIXED ERROR 18/////
   }
 }
 
