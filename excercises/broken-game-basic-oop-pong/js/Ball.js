@@ -48,7 +48,9 @@ Ball.prototype.update = function () {
 Ball.prototype.isOffScreen = function () {
   /////FIXED ERROR 2 (ACCORDING TO CONSOLE): Misspell 'if' & an unecessary '+'/////
   // Check for going off screen and reset if so
-  if (this.x + this.size < 0 && this.x > width) {
+  /////FIXED ERROR 28: The conditions when the ball goes off the screen/////
+  if (this.x + this.size < 0 || this.x > width) {
+  /////END FIXED ERROR 28/////
     /////END FIXED ERROR 2/////
     return true;
   }
