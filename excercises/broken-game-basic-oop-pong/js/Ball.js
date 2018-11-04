@@ -50,7 +50,7 @@ Ball.prototype.isOffScreen = function () {
   // Check for going off screen and reset if so
   /////FIXED ERROR 28: The conditions when the ball goes off the screen/////
   if (this.x + this.size < 0 || this.x > width) {
-  /////END FIXED ERROR 28/////
+    /////END FIXED ERROR 28/////
     /////END FIXED ERROR 2/////
     return true;
   }
@@ -86,8 +86,10 @@ Ball.prototype.handleCollision = function(paddle) {
       // If so, move ball back to previous position (by subtracting current velocity)
       this.x -= this.vx;
       this.y -= this.vy;
+      /////FIXED ERROR 30: Adjust the direction of the x velocity to bounce/////
       // Reverse x velocity to bounce
-      this.vx = this.vx;
+      this.vx = -this.vx;
+      /////END FIXED ERROR 30/////
     }
   }
 }
@@ -97,7 +99,7 @@ Ball.prototype.handleCollision = function(paddle) {
 // Set position back to the middle of the screen
 /////FIXED ERROR 25: Misspell 'reset'/////
 Ball.prototype.reset = function () {
-/////END FIXED ERROR 25/////
+  /////END FIXED ERROR 25/////
   this.x = width/2;
   this.y = height/2;
 }

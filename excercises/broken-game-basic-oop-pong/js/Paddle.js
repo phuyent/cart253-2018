@@ -44,12 +44,12 @@ Paddle.prototype.handleInput = function() {
     /////END FIXED ERROR 26/////
     /////END FIXED ERROR 18/////
   }
-    /////FIXED ERROR 27: Missing the state when no key is pressed/////
+  /////FIXED ERROR 27: Missing the state when no key is pressed/////
   else {
-      this.vy = 0;
-      /////END FIXED 27/////
-    }
+    this.vy = 0;
+    /////END FIXED 27/////
   }
+}
 
 
 // update()

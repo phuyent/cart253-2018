@@ -60,9 +60,9 @@ function draw() {
     /////END FIXED ERROR 17/////
     /////END FIXED ERROR 20/////
 
-  /////FIXED ERROR 29: Mistype 'ball.reset()'/////
+    /////FIXED ERROR 29: Mistype 'ball.reset()'/////
     ball.reset();
-  /////END FIXED ERROR 29/////
+    /////END FIXED ERROR 29/////
   }
 
   ball.handleCollision(leftPaddle);
