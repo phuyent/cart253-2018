@@ -10,7 +10,9 @@
 // Written with JavaScript OOP.
 
 // Variable to contain the objects representing our ball and paddles
-var bal;
+/////FIXED ERROR 11: Typo 'ball'/////
+var ball;
+/////END FIXED ERROR 11/////
 var leftPaddle;
 var rightPaddle;
 
