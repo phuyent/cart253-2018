@@ -34,7 +34,9 @@ Ball.prototype.update = function () {
   this.y = constrain(this.y,0,height-this.size);
 
   // Check for touching upper or lower edge and reverse velocity if so
-  if (this.y = 0 || this.y + this.size === height) {
+/////FIXED ERROR 13: Missing '==='/////
+  if (this.y === 0 || this.y + this.size === height) {
+/////END FIXED ERROR 13/////
     this.vy = -this.vy;
   }
 }
