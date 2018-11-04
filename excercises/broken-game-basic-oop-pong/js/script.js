@@ -20,9 +20,9 @@ var rightPaddle;
 //
 // Creates the ball and paddles
 function setup() {
-/////FIXED ERROR 10 (ACCORDING TO CONSOLE): Wrong creatCanvas() syntax/////
+  /////FIXED ERROR 10 (ACCORDING TO CONSOLE): Wrong creatCanvas() syntax/////
   createCanvas(640,480);
-/////END FIXED ERROR 10/////
+  /////END FIXED ERROR 10/////
   noStroke();
   // Create a ball
   ball = new Ball(width/2,height/2,50,50,10,50);
@@ -31,7 +31,7 @@ function setup() {
   // Create the left paddle with W and S as controls
   // Keycodes 83 and 87 are W and S respectively
   leftPaddle = new Paddle(0,height/2,10,60,10,83,87);
-/////FIXED ERROR 16: Missing closure ')'/////
+  /////FIXED ERROR 16: Missing closure ')'/////
 }
 /////END FIXED ERROR 16/////
 
@@ -44,16 +44,16 @@ function draw() {
 
   leftPaddle.handleInput();
   rightPaddle.handleInput();
-/////FIXED ERROR 1 (ACCORDING TO CONSOLE): Missing the '()' for ball update/////
+  /////FIXED ERROR 1 (ACCORDING TO CONSOLE): Missing the '()' for ball update/////
   ball.update();
-/////END FIXED 1/////
+  /////END FIXED 1/////
   leftPaddle.update();
   rightPaddle.update();
-/////FIXED ERROR 17: Missing one opening curly bracket/////
-/////FIXED ERROR 20: Mistype 'ballIsOffScreen'/////
+  /////FIXED ERROR 17: Missing one opening curly bracket/////
+  /////FIXED ERROR 20: Mistype 'ballIsOffScreen'/////
   if (ball.isOffScreen()){
-/////END FIXED ERROR 17/////
-/////END FIXED ERROR 20/////
+    /////END FIXED ERROR 17/////
+    /////END FIXED ERROR 20/////
     reset();
   }
 
@@ -62,7 +62,7 @@ function draw() {
 
   ball.display();
   leftPaddle.display();
-/////FIXED ERROR 9 (ACCORDING TO CONSOLE): Missing ')'
+  /////FIXED ERROR 9 (ACCORDING TO CONSOLE): Missing ')'
   rightPaddle.display();
-/////END FIXED ERROR 9/////
+  /////END FIXED ERROR 9/////
 }
