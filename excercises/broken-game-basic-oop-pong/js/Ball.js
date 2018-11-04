@@ -25,7 +25,9 @@ function Ball(x,y,vx,vy,size,speed) {
 Ball.prototype.update = function () {
 /////END FIXED ERROR 1/////
   // Update position with velocity
-  this.x = this.vx;
+/////FIXED ERROR 12: Missing '+' for the ball x velocity/////
+  this.x += this.vx;
+/////END FIXED ERROR 12/////
   this.y += this.vy;
 
   // Constrain y position to be on screen
