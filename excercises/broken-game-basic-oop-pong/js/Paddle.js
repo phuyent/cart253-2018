@@ -50,6 +50,10 @@ Paddle.prototype.update = function() {
 // Draw the paddle as a rectangle on the screen
 /////FIXED ERROR 6 (ACCORDING TO CONSOLE): Misspell 'display' & a redundant ')' in function() & wrong rect() syntax/////
 Paddle.prototype.display = function() {
+/////FIXED ERROR 15: No color for the paddles/////
+fill(255);
+/////END FIXED ERROR 15/////
+
   rect(this.x,this.y,this.w,this.h);
 /////END FIXED ERROR 6/////
 }
