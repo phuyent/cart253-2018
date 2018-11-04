@@ -49,8 +49,9 @@ function draw() {
 /////END FIXED 1/////
   leftPaddle.update();
   rightPaddle.update();
-
-  if (ball.isOffTheScreen())
+/////FIXED ERROR 17: Missing one opening curly bracket/////
+  if (ball.isOffTheScreen()){
+/////END FIXED ERROR 17/////
     reset();
   }
 
