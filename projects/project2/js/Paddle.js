@@ -55,9 +55,9 @@ Paddle.prototype.update = function() {
 //
 // Draw the paddle as a rectangle on the screen
 Paddle.prototype.display = function() {
-///NEW CODE PART 3: Change the paddle visuals///
+  ///NEW CODE PART 3: Change the paddle visuals///
   image(this.paddleImage,this.x,this.y,this.w,this.h);
-///END NEW CODE PART 3///
+  ///END NEW CODE PART 3///
 }
 ///NEW CODE PART 3: Set up new function to display score by text///
 //Display the score at the top of the canvas

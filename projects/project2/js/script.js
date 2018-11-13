@@ -19,7 +19,9 @@ var rightPaddleImage;
 var leftPaddleImage;
 var newBackground;
 var sound;
-
+///NEW CODE PART 4: ADD TITLE AND ENDING///
+var state = 0 ;
+///END NEW CODE PART 4///
 //preload()
 //
 //Preload images before the program runs
@@ -59,6 +61,41 @@ function draw() {
   ///NEW CODE PART 3: Change background///
   image(newBackground,0,0,640,480);
   ///END NEW CODE PART 3///
+  ///NEW CODE PART 4: Using 'switch(state)' to create the opening & ending///
+  switch (state) {
+    case 0:
+    gameTitle();
+    break;
+
+    case 1:
+    gameLoop();
+    break;
+
+    case 2:
+    gameEnd();
+    break;
+  }
+}
+
+function gameTitle(){
+  fill(255);
+  text('IT IS FISHING TIME!!!', width/2, height/3);
+  text('Press SPACE BAR to start now', width/2, height/2);
+  text('Catch 10 fish to be the winner', width/2, height*0.7);
+  text('Watch out for the sharks!!!',width/2,height*0.8);
+  textFont('Georgia',30);
+  textStyle(BOLD);
+  textAlign(CENTER);
+}
+
+function gameLoop(){
+  if (leftPaddle.score === 10){
+    state=2;
+  }
+  if(rightPaddle.score === 10){
+    state=2;
+  }
+
 
   leftPaddle.handleInput();
   rightPaddle.handleInput();
@@ -77,8 +114,27 @@ function draw() {
   ball.display();
   leftPaddle.display();
   rightPaddle.display();
-///NEW CODE PART 3: Display score///
+
+  ///NEW CODE PART 3: Display score///
   leftPaddle.scoreDisplay();
   rightPaddle.scoreDisplay();
-///END NEW CODE PART 3///
+  ///END NEW PART 3///
+
 }
+function keyPressed(){
+  if (keyCode === 32){
+    state =1;
+  }
+  if (keyCode === 82){
+    state =0;
+  }
+}
+
+function gameEnd(){
+  text('GAME OVER', width/2, height/2);
+  text('Press R to restart game',width/2,height*0.4);
+  textFont('Georgia',30);
+  textStyle(BOLD);
+  textAlign(CENTER);
+}
+///END NEW CODE PART 4///
