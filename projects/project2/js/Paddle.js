@@ -6,7 +6,9 @@
 // Paddle constructor
 //
 // Sets the properties with the provided arguments or defaults
-function Paddle(x,y,w,h,speed,downKey,upKey) {
+///NEW CODE PART 3: NEW SCORE PROPERTIES, NEW PADDLE IMAGE///
+function Paddle(x,y,w,h,speed,score,scorePositionX,scorePositionY,downKey,upKey,paddleImage) {
+  ///END NEW CODE PART 3///
   this.x = x;
   this.y = y;
   this.vx = 0;
@@ -16,6 +18,13 @@ function Paddle(x,y,w,h,speed,downKey,upKey) {
   this.speed = speed;
   this.downKey = downKey;
   this.upKey = upKey;
+  ///NEW CODE PART 3: Add score to keep up the points ///
+  this.score = score;
+  this.scorePositionX = scorePositionX;
+  this.scorePositionY = scorePositionY;
+  this.paddleImage = paddleImage;
+
+  ///END NEW CODE PART 3///
 }
 
 // handleInput()
@@ -46,6 +55,15 @@ Paddle.prototype.update = function() {
 //
 // Draw the paddle as a rectangle on the screen
 Paddle.prototype.display = function() {
-  fill(255);
-  rect(this.x,this.y,this.w,this.h);
+///NEW CODE PART 3: Change the paddle visuals///
+  image(this.paddleImage,this.x,this.y,this.w,this.h);
+///END NEW CODE PART 3///
 }
+///NEW CODE PART 3: Set up new function to display score by text///
+//Display the score at the top of the canvas
+Paddle.prototype.scoreDisplay = function() {
+  text('Score: ' + this.score,this.scorePositionX,this.scorePositionY);
+  textSize(20);
+  fill(255);
+}
+///END NEW CODE PART 3///
