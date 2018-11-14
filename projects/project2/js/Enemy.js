@@ -1,13 +1,13 @@
-// Ball
+//Enemy Ball
 //
-// A class to define how a ball behaves. Including bouncing on the top
+// A class to define how a enemy ball behaves. Including bouncing on the top
 // and bottom edges of the canvas, going off the left and right sides,
 // and bouncing off paddles.
 
-// Ball constructor
+// Enemy Ball constructor
 //
 // Sets the properties with the provided arguments
-function Ball(x,y,vx,vy,size,speed) {
+function Enemy(x,y,vx,vy,size,speed) {
   this.x = x;
   this.y = y;
   this.vx = vx;
@@ -21,7 +21,7 @@ function Ball(x,y,vx,vy,size,speed) {
 // Moves according to velocity, constrains y to be on screen,
 // checks for bouncing on upper or lower edgs, checks for going
 // off left or right side.
-Ball.prototype.update = function () {
+Enemy.prototype.update = function () {
   // Update position with velocity
   this.x += this.vx;
   this.y += this.vy;
@@ -37,9 +37,9 @@ Ball.prototype.update = function () {
 
 // isOffScreen()
 //
-// Checks if the ball has moved off the screen and, if so, returns true.
+// Checks if the enemy has moved off the screen and, if so, returns true.
 // Otherwise it returns false.
-Ball.prototype.isOffScreen = function () {
+Enemy.prototype.isOffScreen = function () {
   // Check for going off screen and reset if so
   if (this.x + this.size < 0 || this.x > width) {
     return true;
@@ -52,45 +52,47 @@ Ball.prototype.isOffScreen = function () {
 // display()
 //
 // Draw the ball as a rectangle on the screen
-Ball.prototype.display = function () {
-  image(ballImage,this.x, this.y,this.size,this.size);
+Enemy.prototype.display = function () {
+  image(enemyImage,this.x, this.y,this.size,this.size);
 }
 
 // handleCollision(paddle)
 //
-// Check if this ball overlaps the paddle passed as an argument
+// Check if this enemy overlaps the paddle passed as an argument
 // and if so reverse x velocity to bounce
-Ball.prototype.handleCollision = function(paddle) {
-  ///NEW CODE PART 3: See if the ball overlaps any paddles & plus 1 point per successful hit
-  // Check if the ball overlaps the  left paddle on x axis
+Enemy.prototype.handleCollision = function(paddle) {
+  ///NEW CODE PART 3: See if the ball overlaps any paddles & plus 1 point per successful hit///
+  ///NEW CODE PART 5: When the enemy overlaps///
+  // Check if the enemy overlaps the  left paddle on x axis
   if (this.x + this.size > leftPaddle.x && this.x < leftPaddle.x + leftPaddle.w) {
-    // Check if the ball overlaps the left paddle on y axis
+    // Check if the enemy overlaps the left paddle on y axis
     if (this.y + this.size > leftPaddle.y && this.y < leftPaddle.y + leftPaddle.h) {
-      // If so, move ball back to previous position (by subtracting current velocity)
+      // If so, move enemy back to previous position (by subtracting current velocity)
       this.x -= this.vx;
       this.y -= this.vy;
       // Reverse x velocity to bounce
       this.vx = -this.vx;
-      //Add point to the left paddle
-      leftPaddle.score +=1;
-      //The left paddle can move in closer after one successful hit
-      leftPaddle.x +=2;
+      //Minus point to the left paddle
+      leftPaddle.score -=1;
+      //The left paddle can move out after one successful hit
+      leftPaddle.x -=2;
     }
   }
-  // Check if the ball overlaps the  right paddle on x axis
+  // Check if the enemy overlaps the  right paddle on x axis
   if (this.x + this.size > rightPaddle.x && this.x < rightPaddle.x + rightPaddle.w) {
     // Check if the ball overlaps the right paddle on y axis
     if (this.y + this.size > rightPaddle.y && this.y < rightPaddle.y + rightPaddle.h) {
-      // If so, move ball back to previous position (by subtracting current velocity)
+      // If so, move enemy back to previous position (by subtracting current velocity)
       this.x -= this.vx;
       this.y -= this.vy;
       // Reverse x velocity to bounce
       this.vx = -this.vx;
-      //Add point to the right paddle
-      rightPaddle.score +=1;
-      //The right paddle can move in closer after one successful hit
-      rightPaddle.x -=2 ;
+      //Minus point to the right paddle
+      rightPaddle.score -=1;
+      //The right paddle can move out after one successful hit
+      rightPaddle.x +=2 ;
       ///END NEW CODEPART 3///
+
     }
   }
 }
@@ -98,7 +100,9 @@ Ball.prototype.handleCollision = function(paddle) {
 // reset()
 //
 // Set position back to the middle of the screen
-Ball.prototype.reset = function () {
-  this.x = width/2;
-  this.y = height/2;
+Enemy.prototype.reset = function () {
+  ///NEW CODE PART 5: The enemy can appear anywhere///
+  this.x = random(20,640);
+  this.y = random(20,450);
 }
+  ///END NEW CODE PART 5///

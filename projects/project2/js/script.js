@@ -13,6 +13,13 @@
 var ball;
 var leftPaddle;
 var rightPaddle;
+///NEW CODE PART 5: Add new kind of ball that should be avoid during the game///
+var enemy;
+var enemyImage;
+///END NEW CODE PART 5///
+///NEW CODE PART 5: BALL FOOD///
+var food;
+///END NEW CODE PART 5///
 ///NEW CODE PART 3: Improve visuals///
 var ballImage;
 var rightPaddleImage;
@@ -32,6 +39,10 @@ function preload(){
   newBackground = loadImage('assets/images/underwater.png');
   sound = new Audio('assets/sounds/sea_sound.mp3');
   ///END NEW CODE PART 3///
+  ///NEW CODE PART 5: Load the enemy image before the games starts///
+  enemyImage = loadImage('assets/images/pink.png');
+  foodImage = loadImage('assets/images/algae.png');
+  ///END NEW CODE PART 5///
 }
 
 //setup()
@@ -40,16 +51,21 @@ function preload(){
 function setup() {
   createCanvas(640,480);
   //Create a ball
-  ball = new Ball(width/2,height/2,5,5,50,5);
+  ball = new Ball(width/2,height/2,random(-5,5),5,50,5);
   //Create the right paddle with UP and DOWN as controls
   ///NEW CODE PART 3: Start score at 0, add x & y position to dispay the score by text, add sound///
   rightPaddle = new Paddle(width-100,height/2,80,100,10,0,480,40,DOWN_ARROW,UP_ARROW,rightPaddleImage);
   //Create the left paddle with W and S as controls
   //Keycodes 83 and 87 are W and S respectively
   leftPaddle = new Paddle(30,height/2,80,100,10,0,100,40,83,87,leftPaddleImage);
+  ///END NEW CODE PART 3///
+  ///NEW CODE PART 5: Set up the enemy ball///
+  enemy = new Enemy(width/2,10,random(-5,5),random(-4,4),70,4);
+  food = new Food(500,400,50);
+  ///END NEW CODE PART 5///
   //Play music throughout the game
   sound.play();
-  ///END NEW CODE PART 3///
+
 }
 
 
@@ -81,18 +97,18 @@ function gameTitle(){
   fill(255);
   text('IT IS FISHING TIME!!!', width/2, height/3);
   text('Press SPACE BAR to start now', width/2, height/2);
-  text('Catch 10 fish to be the winner', width/2, height*0.7);
-  text('Watch out for the sharks!!!',width/2,height*0.8);
+  text('Catch 20 fish to be the winner', width/2, height*0.7);
+  text('Watch out for the jellyfishes!!!',width/2,height*0.8);
   textFont('Georgia',30);
   textStyle(BOLD);
   textAlign(CENTER);
 }
 
 function gameLoop(){
-  if (leftPaddle.score === 10){
+  if (leftPaddle.score ===20){
     state=2;
   }
-  if(rightPaddle.score === 10){
+  if(rightPaddle.score ===20){
     state=2;
   }
 
@@ -120,6 +136,19 @@ function gameLoop(){
   rightPaddle.scoreDisplay();
   ///END NEW PART 3///
 
+  ///NEW CODE PART 5///
+  enemy.update();
+  if (enemy.isOffScreen()) {
+    enemy.reset();
+  }
+  enemy.handleCollision(leftPaddle);
+  enemy.handleCollision(rightPaddle);
+  enemy.display();
+
+  food.display();
+  food.handleCollision(ball);
+
+  ///END NEW CODE PART 5///
 }
 function keyPressed(){
   if (keyCode === 32){
