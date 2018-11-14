@@ -13,13 +13,6 @@
 var ball;
 var leftPaddle;
 var rightPaddle;
-///NEW CODE PART 5: Add new kind of ball that should be avoid during the game///
-var enemy;
-var enemyImage;
-///END NEW CODE PART 5///
-///NEW CODE PART 5: BALL FOOD///
-var food;
-///END NEW CODE PART 5///
 ///NEW CODE PART 3: Improve visuals///
 var ballImage;
 var rightPaddleImage;
@@ -29,6 +22,16 @@ var sound;
 ///NEW CODE PART 4: ADD TITLE AND ENDING///
 var state = 0 ;
 ///END NEW CODE PART 4///
+///NEW CODE PART 5: Add new kind of ball that should be avoid during the game///
+var enemy;
+var enemyImage;
+///END NEW CODE PART 5///
+///NEW CODE PART 5: BALL FOOD///
+var food;
+///END NEW CODE PART 5///
+///NEW CODE PART 6///
+var foodnumbers = [];
+///END NEW CODE PART 6///
 //preload()
 //
 //Preload images before the program runs
@@ -65,7 +68,7 @@ function setup() {
   ///END NEW CODE PART 5///
   //Play music throughout the game
   sound.play();
-
+  //array of food objects that will appear at random places and sizes
 }
 
 
@@ -147,7 +150,6 @@ function gameLoop(){
 
   food.display();
   food.handleCollision(ball);
-
   ///END NEW CODE PART 5///
 }
 function keyPressed(){
@@ -157,6 +159,10 @@ function keyPressed(){
   if (keyCode === 82){
     state =0;
   }
+
+  for (var i = 0; i < 50; i++){
+    food.push (new Food(random(200,500),random(200,400),50));
+   }
 }
 
 function gameEnd(){

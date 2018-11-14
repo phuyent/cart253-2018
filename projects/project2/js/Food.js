@@ -18,7 +18,9 @@ Food.prototype.handleCollision = function(ball) {
   if (this.x + this.size > ball.x && this.x < ball.x) {
     // Check if the ball overlaps the paddle on y axis
     if (this.y + this.size > ball.y && this.y < ball.y) {
-      //make ball faster
+      this.x = random(100,400);
+      this.y = random(100,500);
+      //Make the ball move faster
       ball.vx *= 2;
       return true;
     }
@@ -31,5 +33,4 @@ Food.prototype.handleCollision = function(ball) {
 Food.prototype.display = function() {
   image(foodImage,this.x,this.y,this.size,this.size);
 }
-
 ///END NEW CODE PART 5///
