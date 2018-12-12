@@ -24,7 +24,7 @@ function Gemstone() {
     pop();
   };
   this.displayLevelTwo = function() {
-    //Set default gems in level 1 to be blue
+    //Set default gems in level 2 to be blue
     push();
     noStroke();
     colorMode(RGB);
@@ -33,7 +33,7 @@ function Gemstone() {
     pop();
   };
   this.displayLevelThree = function() {
-    //Set default gems in level 1 to be yellow
+    //Set default gems in level 3 to be yellow
     push();
     noStroke();
     colorMode(RGB);

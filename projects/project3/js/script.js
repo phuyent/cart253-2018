@@ -108,23 +108,10 @@ function draw() {
     gameEnd();
     break;
   }
-  //if()
-  //
-  //Conditions to switch states
-  if (monster.scoreLevelOne ===5 && state === 1){
-    text('Level Up!',width/2,height/2);
-    state = 2;
-  }
-  if (monster.scoreLevelTwo ===10 && state === 2){
-    text('Level Up!',width/2,height/2);
-    state = 3;
-  }
-  if (monster.scoreLevelTwo ===15 && state === 3){
-    text('LEVELS COMPLETED',width/2,height/2);
-    state = 4;
-  }
-
 }
+//gameTitile()
+//
+//Set up the beginning of the game
 function gameTitle(){
   noStroke();
   imageMode(CORNER);
@@ -139,6 +126,9 @@ function gameTitle(){
   textStyle(BOLD);
   textAlign(CENTER);
 }
+//levelOne()
+//
+//Set up the first level
 function levelOne() {
   ////***Level 1 theme will be on land, searching for the green gemstones***////
   //New background to pair with the theme
@@ -174,7 +164,6 @@ function levelOne() {
   for(i=0; i<10;i++){
     rocks[i].update();
     rocks[i].display();
-
   }
   //Gemstone functions
   for(i=0; i<10;i++){
@@ -204,6 +193,9 @@ function levelOne() {
   }
   ////***DONE WITH TIMER***////
 }
+//levelTwo()
+//
+//Set  up the second level
 function levelTwo() {
   ////***Level 2 theme will be underwater, searching for the blue gemstones***////
   //New background to pair with the theme
@@ -216,8 +208,8 @@ function levelTwo() {
   if (monster.scoreLevelTwo ===10 && state === 2){
     text('Level Up!',width/2,height/2);
     state = 3;
-  ////Handles input, updates all the elements, checks for collisions
-  //and displays everything.
+  }
+
 
   //Monster functions
   monster.handleInput();
