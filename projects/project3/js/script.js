@@ -27,15 +27,26 @@ var background1;
 var background2;
 var bachground3;
 var background4;
-//A specific opening song that pairs ell with my eating theme
+//A specific opening song that pairs well with my eating theme
 var openMusic;
-
+//All three level music
+var levelOneMusic;
+var levelTwoMusic;
+var levelThreeMusic;
 // preload()
 //
 // Load the images and music before the program runs
 function preload() {
+  //Set the format
+  soundFormats('mp3');
   //The opening song
-  openMusic = new Audio('assets/sounds/nom-nom-song.mp3');
+  openMusic = loadSound('assets/sounds/nom-nom-song.mp3');
+  //The 1st level song
+  levelOneMusic = loadSound('assets/sounds/level-one.mp3');
+  //The 1st level song
+  levelTwoMusic =  loadSound('assets/sounds/level-two.mp3');
+  //The 1st level song
+  levelThreeMusic = loadSound('assets/sounds/level-three.mp3');
   //The background of the beginning & the levels
   background0 = loadImage('assets/images/bg0.jpg');
   background1 = loadImage('assets/images/bg1.jpg');
@@ -51,6 +62,12 @@ function preload() {
 //Create the monster and objects for each level
 function setup() {
   createCanvas(800,600);
+  //Set the 1st song mode
+  levelOneMusic.playMode('restart');
+  //Set the 2nd song mode
+  levelTwoMusic.rate(0.5);
+  //Set the 3rd song mode
+  levelThreeMusic.noLoop();
   //Create the gemstone
   //Set the information for gemstone.js
   for (var i=0; i<20; i++) {
@@ -113,6 +130,8 @@ function draw() {
 //
 //Set up the beginning of the game
 function gameTitle(){
+  //Play music at the beginning only
+  openMusic.play();
   noStroke();
   imageMode(CORNER);
   image(background0,0,0,windowWidth,windowHeight);
@@ -125,6 +144,7 @@ function gameTitle(){
   textFont('Times New Roman',30);
   textStyle(BOLD);
   textAlign(CENTER);
+
 }
 //levelOne()
 //
@@ -137,6 +157,8 @@ function levelOne() {
   image(background1,0,0,windowWidth,windowHeight);
   //Display the goal at the top right of the canvas
   text ('Eat 5 gemstone to pass',600,50);
+  openMusic.pause();
+  levelOneMusic.play();
   pop();
 
   //if()
@@ -205,6 +227,8 @@ function levelTwo() {
   //Display the goal at the top right of the canvas
   text ('Eat 10 gemstone to pass',600,50);
   pop();
+  levelOneMusic.pause();
+  levelTwoMusic.play();
   if (monster.scoreLevelTwo ===10 && state === 2){
     text('Level Up!',width/2,height/2);
     state = 3;
@@ -264,6 +288,8 @@ function levelThree() {
   image(background3,0,0,windowWidth,windowHeight);
   //Display the goal at the top right of the canvas
   text ('Eat 15 gemstone to pass',600,50);
+  levelTwoMusic.pause();
+  levelThreeMusic.play();
   pop();
 
   ////Handles input, updates all the elements, checks for collisions
@@ -322,6 +348,7 @@ function gameEnd(){
   textFont('Times New Roman',30);
   textStyle(BOLD);
   textAlign(CENTER);
+  levelThreeMusic.pause();
 }
 //keyPressed()
 //
