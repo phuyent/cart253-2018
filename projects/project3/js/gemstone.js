@@ -6,16 +6,25 @@
 //
 //Set the properties
 function Gemstone() {
-  this.x = random(100,700);
-  this.y = random(100,500);
+  this.x = random(50,600);
+  this.y = random(50,400);
   this.diameter = random(10, 30);
   this.speed = 1;
   this.update = function() {
     this.x += random(-this.speed, this.speed);
     this.y += random(-this.speed, this.speed);
   };
-  this.display = function() {
-    //Set default for rocks to be gray
+  this.displayLevelOne = function() {
+    //Set default gems in level 1 to be green
+    push();
+    noStroke();
+    colorMode(RGB);
+    fill(0,255,90);
+    ellipse(this.x, this.y, this.diameter, this.diameter);
+    pop();
+  };
+  this.displayLevelTwo = function() {
+    //Set default gems in level 1 to be blue
     push();
     noStroke();
     colorMode(RGB);
@@ -23,16 +32,13 @@ function Gemstone() {
     ellipse(this.x, this.y, this.diameter, this.diameter);
     pop();
   };
-  this.handleCollision = function(monster) {
-    // Check if the monster overlaps the rock on x axis
-    if (this.x + this.size > monster.x && this.x < monster.x + monster.w) {
-      // Check if the monster overlaps the rock on y axis
-      if (this.y + this.size > monster.y && this.y < monster.y + monster.h) {
-        // If so, shrink the monster size
-        monster.size +=5;
-        //Minus point to the monster
-        monster.score +=1;
-      }
-    }
+  this.displayLevelThree = function() {
+    //Set default gems in level 1 to be yellow
+    push();
+    noStroke();
+    colorMode(RGB);
+    fill(180,212,0);
+    ellipse(this.x, this.y, this.diameter, this.diameter);
+    pop();
   };
 }

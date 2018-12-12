@@ -26,6 +26,7 @@ var background0;
 var background1;
 var background2;
 var bachground3;
+var background4;
 //A specific opening song that pairs ell with my eating theme
 var openMusic;
 
@@ -40,6 +41,7 @@ function preload() {
   background1 = loadImage('assets/images/bg1.jpg');
   background2 = loadImage('assets/images/bg2.jpg');
   background3 = loadImage('assets/images/bg3.jpg');
+  background4 = loadImage('assets/images/bg4.jpg');
   monsterImage = loadImage('assets/images/monster.png');
 }
 
@@ -52,18 +54,18 @@ function setup() {
   //Create the gemstone
   //Set the information for gemstone.js
   for (var i=0; i<20; i++) {
-      gemstones.push(new Gemstone());
-    }
+    gemstones.push(new Gemstone());
+  }
   //Create the rock
   //Set the information for rock.js
   for (var i=0; i<20; i++) {
-      rocks.push(new Rock());
-    }
+    rocks.push(new Rock());
+  }
 
   //Create the monster
   //Controlled by 4 arrows on the keyboard
   //Keycodes are written in the order up key, down key, left key and right key
-  monster = new Monster(width/2,height-100,80,70,70,10,0,100,90,38,40,37,39,monsterImage);
+  monster = new Monster(width/2,height-100,80,70,70,10,0,0,0,100,90,38,40,37,39,monsterImage);
 }
 
 
@@ -74,14 +76,16 @@ function setup() {
 
 function draw() {
   //Rocks loop
-  for(i=0; i<10;i++){
+  for(i=0; i<20;i++){
     rocks[i].update();
     rocks[i].display();
   }
   //Gemstones loop
-  for(i=0; i<10;i++){
+  for(i=0; i<20;i++){
     gemstones[i].update();
-    gemstones[i].display();
+    gemstones[i].displayLevelOne();
+    gemstones[i].displayLevelTwo();
+    gemstones[i].displayLevelThree();
   }
   switch(state) {
     case 0:
@@ -104,6 +108,22 @@ function draw() {
     gameEnd();
     break;
   }
+  //if()
+  //
+  //Conditions to switch states
+  if (monster.scoreLevelOne ===5 && state === 1){
+    text('Level Up!',width/2,height/2);
+    state = 2;
+  }
+  if (monster.scoreLevelTwo ===10 && state === 2){
+    text('Level Up!',width/2,height/2);
+    state = 3;
+  }
+  if (monster.scoreLevelTwo ===15 && state === 3){
+    text('LEVELS COMPLETED',width/2,height/2);
+    state = 4;
+  }
+
 }
 function gameTitle(){
   noStroke();
@@ -136,7 +156,9 @@ function levelOne() {
   monster.handleInput();
   monster.display();
   monster.update();
-  monster.displayScore();
+  monster.displayScoreLevelOne();
+  monster.handleCollision(rocks);
+  monster.handleCollision(gemstones);
   if (monster.isOffScreen()) {
     monster.reset();
   }
@@ -145,13 +167,12 @@ function levelOne() {
   for(i=0; i<10;i++){
     rocks[i].update();
     rocks[i].display();
-    rocks[i].handleCollision(monster);
+
   }
   //Gemstone functions
   for(i=0; i<10;i++){
     gemstones[i].update();
-    gemstones[i].display();
-    gemstones[i].handleCollision(monster);
+    gemstones[i].displayLevelOne();
   }
 
   ////***SET UP THE TIMER***////
@@ -172,17 +193,41 @@ function levelOne() {
   }
   if (timer == 0) {
     text("TIME'S UP!", width/2, height/3);
-    text("Press 'Enter' to start again", width/2,height/4);
+    text("Press 'Enter' to start again", width/2,height/5);
   }
   ////***DONE WITH TIMER***////
 }
+function gameEnd(){
+  imageMode(CORNER);
+  image(background4,0,0,windowWidth,windowHeight);
+  text('GAME OVER', width/2, height/2);
+  text('Press R to restart game',width/2,height*0.4);
+  textFont('Times New Roman',30);
+  textStyle(BOLD);
+  textAlign(CENTER);
+}
+//keyPressed()
+//
+//Control the game with keyboards
 function keyPressed() {
   //Press spacebar to start the game
   if (keyCode === 32) {
     state = 1;
   }
-  //Press 'enter' key to play again
-  if (keyCode === 13){
+  //Press 'enter' key to play again level 1
+  if (keyCode === 13 && state === 1){
+    state = 1;
+  }
+  //Press 'enter' key to play again level 2
+  if (keyCode === 13 && state === 2) {
+    state = 2;
+  }
+  //Press 'enter' key to play again level 3
+  if (keyCode === 13 && state === 3) {
+    state = 3;
+  }
+  //Press 'enter' to play again from the beginning if the player is at the final state
+  if (keyCode === 13 && state === 4) {
     state = 0;
   }
 }
