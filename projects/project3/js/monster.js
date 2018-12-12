@@ -91,7 +91,7 @@ Monster.prototype.handleCollision = function(gemstones) {
     }
   }
 }
-      console.log("Count points" + this.score);
+
 //isOffScreen()
 //
 //If the player is running out of the screen
