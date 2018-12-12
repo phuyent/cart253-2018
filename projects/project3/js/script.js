@@ -51,7 +51,8 @@ var openMusic;
 function preload() {
   //The opening song
   openMusic = new Audio('assets/sounds/nom-nom-song.mp3');
-  background0 = loadImage('assets/images/bg0.png');
+  //The background of the beginning & the levels
+  background0 = loadImage('assets/images/bg0.jpg');
   background1 = loadImage('assets/images/bg1.jpg');
   background2 = loadImage('assets/images/bg2.jpg');
   background3 = loadImage('assets/images/bg3.jpg');
@@ -65,10 +66,14 @@ function preload() {
 function setup() {
   createCanvas(800,600);
   //Create the gemstone
+  //Set the x & y position, size & speed
   gemstone = new Gemstone(150,150,10,5);
   //Create the rock
+  //Set the x & y position, the velocity, the size & speed
   rock = new Rock(100,100,5,5,10,5);
   //Create the monster
+  //Controlled by 4 arrows on the keyboard
+  //Keycodes are written in the order up key, down key, left key and right key
   monster = new Monster(width/2,height-100,80,70,70,10,0,100,90,38,40,37,39,monsterImage);
 }
 
@@ -102,12 +107,16 @@ function draw() {
   }
 }
 function gameTitle(){
+  noStroke();
+  imageMode(CORNER);
   image(background0,0,0,windowWidth,windowHeight);
   fill(255);
-  text('THE GEM EATER', width/2, height/2);
+  textSize(40);
+  text('THE GEM EATER',width/2, height/3);
+  image(monsterImage,350,220,100,100);
   text('Join in to be the master of power',width/2, height*0.6);
   text('Press spacebar to start eating!!!',width/2, height*0.7);
-  textFont('Georgia',30);
+  textFont('Times New Roman',30);
   textStyle(BOLD);
   textAlign(CENTER);
 }

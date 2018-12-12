@@ -51,7 +51,7 @@ Rock.prototype.isOffScreen = function () {
 // Draw the ball as a rectangle on the screen
 Rock.prototype.display = function () {
   noStroke();
-  colorMode(RGB, 100);
+  fill(220);
   ellipse(this.size,this.size,this.size,this.size);
 }
 // handleCollision(monster)
