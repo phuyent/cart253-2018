@@ -56,6 +56,7 @@ Monster.prototype.update = function() {
   this.x = constrain(this.x,0,width-this.w);
   this.y = constrain(this.y,0,height-this.h);
 }
+
 //isOffScreen()
 //
 //If the player is running out of the screen
@@ -68,39 +69,6 @@ Monster.prototype.isOffScreen = function(){
     return false;
   }
 }
-// handleCollision(gemstone)
-//
-// Check if this monster overlaps the gemstone passed as an argument
-// and if so plus one point and enlarge
-Monster.prototype.handleCollision = function(gemstone) {
-  // Check if the monster overlaps the gemstone on x axis
-  if (this.x + this.size >gemstone.x && this.x < gemstone.x + gemstone.w) {
-    // Check if the monster overlaps the gemstone on y axis
-    if (this.y + this.size > gemstone.y && this.y < gemstone.y + gemstone.h) {
-      // If so, expand the monster size
-      this.size +=5;
-      //Add point to the monster
-      this.score +=1;
-    }
-  }
-}
-// handleCollision(rock)
-//
-// Check if this monster overlaps the gemstone passed as an argument
-// and if so minus one and shrink the monster
-Monster.prototype.handleCollision = function(rock) {
-  // Check if the monster overlaps the rock on x axis
-  if (this.x + this.size > rock.x && this.x < rock.x + rock.w) {
-    // Check if the monster overlaps the rock on y axis
-    if (this.y + this.size > rock.y && this.y < rock.y + rock.h) {
-      // If so, shrink the monster size
-      this.size -=5;
-      //Minus point to the monster
-      this.score -=1;
-    }
-  }
-}
-
 // display()
 //
 //Display the monster image

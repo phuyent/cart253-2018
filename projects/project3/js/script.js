@@ -18,25 +18,9 @@ var state = 0;
 var monster;
 var monsterImage;
 //Array containing mutiple colored gemstones
-var gemstone = [
-  new Gemstone(10,10,2,2,10,2),
-  new Gemstone(20,10,2,2,10,2),
-  new Gemstone(30,10,2,2,10,2),
-  new Gemstone(40,10,2,2,10,2),
-  new Gemstone(50,10,2,2,10,2),
-  new Gemstone(60,10,2,2,10,2),
-  new Gemstone(70,10,2,2,10,2),
-  new Gemstone(80,10,2,2,10,2),
-  new Gemstone(90,10,2,2,10,2),
-  new Gemstone(100,10,2,2,10,2),
-  new Gemstone(110,10,2,2,10,2),
-  new Gemstone(120,10,2,2,10,2),
-  new Gemstone(130,10,2,2,10,2),
-  new Gemstone(140,10,2,2,10,2),
-  new Gemstone(150,10,2,2,10,2)
-];
+var gemstones = [];
 //Start rock with an empty array to later define its position
-var rock =[];
+var rocks =[];
 //Three backgrounds for 3 levels and the title background
 var background0;
 var background1;
@@ -66,11 +50,16 @@ function preload() {
 function setup() {
   createCanvas(800,600);
   //Create the gemstone
-  //Set the x & y position, size & speed
-  gemstone = new Gemstone(150,150,10,5);
+  //Set the information for gemstone.js
+  for (var i=0; i<20; i++) {
+      gemstones.push(new Gemstone());
+    }
   //Create the rock
-  //Set the x & y position, the velocity, the size & speed
-  rock = new Rock(100,100,5,5,10,5);
+  //Set the information for rock.js
+  for (var i=0; i<20; i++) {
+      rocks.push(new Rock());
+    }
+
   //Create the monster
   //Controlled by 4 arrows on the keyboard
   //Keycodes are written in the order up key, down key, left key and right key
@@ -84,6 +73,16 @@ function setup() {
 //and displays everything.
 
 function draw() {
+  //Rocks loop
+  for(i=0; i<10;i++){
+    rocks[i].update();
+    rocks[i].display();
+  }
+  //Gemstones loop
+  for(i=0; i<10;i++){
+    gemstones[i].update();
+    gemstones[i].display();
+  }
   switch(state) {
     case 0:
     gameTitle();
@@ -129,52 +128,51 @@ function levelOne() {
   //Display the goal at the top right of the canvas
   text ('Eat 5 gemstone to pass',600,50);
   pop();
+
   ////Handles input, updates all the elements, checks for collisions
   //and displays everything.
+
+  //Monster functions
   monster.handleInput();
-
+  monster.display();
   monster.update();
-  gemstone.update();
-  rock.update();
-
+  monster.displayScore();
   if (monster.isOffScreen()) {
     monster.reset();
   }
 
-  monster.handleCollision(gemstone);
-  monster.handleCollision(rock);
-
-  monster.display();
-  gemstone.display();
-  rock.display();
-
-  monster.displayScore();
-
-  if (rock.isOffScreen()) {
-    rock.reset();
+  //Rock functions
+  for(i=0; i<10;i++){
+    rocks[i].update();
+    rocks[i].display();
+    rocks[i].handleCollision(monster);
+  }
+  //Gemstone functions
+  for(i=0; i<10;i++){
+    gemstones[i].update();
+    gemstones[i].display();
+    gemstones[i].handleCollision(monster);
   }
 
-  rock.handleCollision(monster);
-  gemstone.handleCollision(monster);
-
   ////***SET UP THE TIMER***////
+  //Source: https://editor.p5js.org/marynotari/sketches/S1T2ZTMp-
   //Styling the font
   textStyle('Helvetica');
   textAlign(CENTER);
   textSize(30);
   //Display the countdown at the top left of the canvas
   text('Time:'+timer,100,50);
-  // While (timer > 0) {  // this doesn't work because it's all happening at the same time
-  // }
   // frameCount: this keeps track of the number of times the program has gone throught the code, 60 = 1 second
   // %: this is the Modulo operator, it divides numbers and evaluates to the remainder: 17 % 5 evaluates to 2 remainder
   // This can be used to determine if the number on the left is divisible by the number on the right
   if (frameCount % 60 == 0 && timer > 0) {
-    // if the frameCount is divisible by 60, then a second has passed. it will stop at 0
+    //If the frameCount is divisible by 60, then a second has passed.
+    //It will stop at 0
     timer --;
   }
   if (timer == 0) {
-    text("TIME'S UP!", width/2, height/2);
+    text("TIME'S UP!", width/2, height/3);
+    text("Press 'Enter' to start again", width/2,height/4);
   }
   ////***DONE WITH TIMER***////
 }
