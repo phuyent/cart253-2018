@@ -69,63 +69,70 @@ function Monster(x,y,w,h,size,speed,scoreLevelOne,scoreLevelTwo,scoreLevelThree,
     if (this.x + this.size > rocks.x && this.x < rocks.x + rocks.w) {
       // Check if the monster overlaps the rock on y axis
       if (this.y + this.size > rocks.y && this.y < rocks.y + rocks.h) {
-        // If so, shrink the monster size
-        this.size -=2;
-        //Minus point to the monster
-        this.scoreLevelOne -=1;
-        this.scoreLevelTwo -=2;
-        this.scoreLevelThree -=3;
+        if (this.w + this.size > rocks.diameter && this.w < rocks.diameter) {
+          if (this.h + this.size > rocks.diameter && this.h < rocks.diameter) {
+            // If so, shrink the monster size
+            this.size -=2;
+            //Minus point to the monster
+            this.scoreLevelOne -=1;
+            this.scoreLevelTwo -=2;
+            this.scoreLevelThree -=3;
+          }
+        }
+      }
+    }}
+    Monster.prototype.handleCollision = function(gemstones) {
+      // Check if the monster overlaps the rock on x axis
+      if (this.x + this.size > gemstones.x && this.x < gemstones.x + gemstones.w) {
+        // Check if the monster overlaps the rock on y axis
+        if (this.y + this.size > gemstones.y && this.y < gemstones.y + gemstones.h) {
+          if (this.w + this.size > gemstones.diameter && this.w < gemstones.diameter) {
+            if (this.h + this.size > gemstones.diameter && this.h < gemstones.diameter) {
+              // If so, enlarge the monster size
+              this.size +=5;
+              //Add point to the monster
+              this.scoreLevelOne +=1;
+              this.scoreLevelTwo +=2;
+              this.scoreLevelThree +=3;
+            }
+          }
+        }
       }
     }
-  }
-  Monster.prototype.handleCollision = function(gemstones) {
-    // Check if the monster overlaps the rock on x axis
-    if (this.x + this.size > gemstones.x && this.x < gemstones.x + gemstones.w) {
-      // Check if the monster overlaps the rock on y axis
-      if (this.y + this.size > gemstones.y && this.y < gemstones.y + gemstones.h) {
-        // If so, enlarge the monster size
-        this.size +=5;
-        //Add point to the monster
-        this.scoreLevelOne +=1;
-        this.scoreLevelTwo +=2;
-        this.scoreLevelThree +=3;
+
+    //isOffScreen()
+    //
+    //If the player is running out of the screen
+    Monster.prototype.isOffScreen = function(){
+      // Check for going off screen and reset if so
+      if (this.x + this.size < 0 || this.x > width) {
+        return true;
+      }
+      else {
+        return false;
       }
     }
-  }
-
-  //isOffScreen()
-  //
-  //If the player is running out of the screen
-  Monster.prototype.isOffScreen = function(){
-    // Check for going off screen and reset if so
-    if (this.x + this.size < 0 || this.x > width) {
-      return true;
+    // display()
+    //
+    //Display the monster image
+    Monster.prototype.display = function() {
+      noStroke();
+      image(this.monsterImage,this.x,this.y,this.w,this.h);
     }
-    else {
-      return false;
-    }
-  }
-  // display()
-  //
-  //Display the monster image
-  Monster.prototype.display = function() {
-    noStroke();
-    image(this.monsterImage,this.x,this.y,this.w,this.h);
-  }
 
-  //Display the score under the timer
-  Monster.prototype.displayScoreLevelOne = function() {
-    text('Score: ' + this.scoreLevelOne,this.scorePositionX,this.scorePositionY);
-    textSize(20);
-    fill(255);
-  }
-  Monster.prototype.displayScoreLevelTwo = function() {
-    text('Score: ' + this.scoreLevelTwo,this.scorePositionX,this.scorePositionY);
-    textSize(20);
-    fill(255);
-  }
-  Monster.prototype.displayScoreLevelThree = function() {
-    text('Score: ' + this.scoreLevelThree,this.scorePositionX,this.scorePositionY);
-    textSize(20);
-    fill(255);
-  }
+    //Display the score under the timer
+    Monster.prototype.displayScoreLevelOne = function() {
+      text('Score: ' + this.scoreLevelOne,this.scorePositionX,this.scorePositionY);
+      textSize(20);
+      fill(255);
+    }
+    Monster.prototype.displayScoreLevelTwo = function() {
+      text('Score: ' + this.scoreLevelTwo,this.scorePositionX,this.scorePositionY);
+      textSize(20);
+      fill(255);
+    }
+    Monster.prototype.displayScoreLevelThree = function() {
+      text('Score: ' + this.scoreLevelThree,this.scorePositionX,this.scorePositionY);
+      textSize(20);
+      fill(255);
+    }

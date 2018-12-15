@@ -67,7 +67,7 @@ function setup() {
   //Set the 2nd song mode
   levelTwoMusic.rate(0.5);
   //Set the 3rd song mode
-  levelThreeMusic.noLoop();
+  levelThreeMusic.rate(0.5);
   //Create the gemstone
   //Set the information for gemstone.js
   for (var i=0; i<20; i++) {
